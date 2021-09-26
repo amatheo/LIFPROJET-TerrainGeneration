@@ -26,6 +26,7 @@ public slots:
 	void BoxMeshExample();
 	void ResetCamera();
 	void UpdateMaterial();
+	void ChangeCameraProjection();
 };
 
 #endif

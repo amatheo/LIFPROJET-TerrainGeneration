@@ -42,7 +42,6 @@ public:
     QHBoxLayout *hboxLayout;
     QGroupBox *Objects_groupBox;
     QPushButton *boxMesh;
-    QPushButton *resetcameraButton;
     QWidget *widget_GL;
     QGroupBox *Parameters_groupBox;
     QGroupBox *groupBox_4;
@@ -50,9 +49,12 @@ public:
     QLineEdit *lineEdit_2;
     QLabel *label_3;
     QLineEdit *lineEdit;
-    QGroupBox *groupBox_13;
+    QGroupBox *ShadingBox;
     QRadioButton *radioShadingButton_1;
     QCheckBox *wireframe;
+    QGroupBox *CameraBox;
+    QCheckBox *orthographic_mode;
+    QPushButton *resetcameraButton;
     QMenuBar *menubar;
     QMenu *menuFile;
 
@@ -99,12 +101,6 @@ public:
         boxMesh->setObjectName(QString::fromUtf8("boxMesh"));
         boxMesh->setGeometry(QRect(20, 20, 81, 23));
         boxMesh->setCheckable(false);
-        resetcameraButton = new QPushButton(Objects_groupBox);
-        resetcameraButton->setObjectName(QString::fromUtf8("resetcameraButton"));
-        resetcameraButton->setGeometry(QRect(110, 20, 81, 23));
-        resetcameraButton->setCheckable(true);
-        resetcameraButton->setAutoDefault(false);
-        resetcameraButton->setFlat(false);
 
         hboxLayout->addWidget(Objects_groupBox);
 
@@ -138,17 +134,31 @@ public:
         lineEdit->setObjectName(QString::fromUtf8("lineEdit"));
         lineEdit->setGeometry(QRect(70, 20, 81, 20));
         lineEdit->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
-        groupBox_13 = new QGroupBox(Parameters_groupBox);
-        groupBox_13->setObjectName(QString::fromUtf8("groupBox_13"));
-        groupBox_13->setGeometry(QRect(190, 20, 251, 121));
-        radioShadingButton_1 = new QRadioButton(groupBox_13);
+        ShadingBox = new QGroupBox(Parameters_groupBox);
+        ShadingBox->setObjectName(QString::fromUtf8("ShadingBox"));
+        ShadingBox->setGeometry(QRect(190, 20, 251, 121));
+        radioShadingButton_1 = new QRadioButton(ShadingBox);
         radioShadingButton_1->setObjectName(QString::fromUtf8("radioShadingButton_1"));
         radioShadingButton_1->setGeometry(QRect(20, 20, 61, 20));
         radioShadingButton_1->setChecked(true);
-        wireframe = new QCheckBox(groupBox_13);
+        wireframe = new QCheckBox(ShadingBox);
         wireframe->setObjectName(QString::fromUtf8("wireframe"));
         wireframe->setGeometry(QRect(90, 20, 81, 17));
         wireframe->setChecked(true);
+        CameraBox = new QGroupBox(Parameters_groupBox);
+        CameraBox->setObjectName(QString::fromUtf8("CameraBox"));
+        CameraBox->setGeometry(QRect(190, 150, 251, 51));
+        CameraBox->setFlat(false);
+        orthographic_mode = new QCheckBox(CameraBox);
+        orthographic_mode->setObjectName(QString::fromUtf8("orthographic_mode"));
+        orthographic_mode->setGeometry(QRect(20, 20, 81, 17));
+        orthographic_mode->setChecked(true);
+        resetcameraButton = new QPushButton(CameraBox);
+        resetcameraButton->setObjectName(QString::fromUtf8("resetcameraButton"));
+        resetcameraButton->setGeometry(QRect(130, 20, 81, 23));
+        resetcameraButton->setCheckable(true);
+        resetcameraButton->setAutoDefault(false);
+        resetcameraButton->setFlat(false);
 
         hboxLayout->addWidget(Parameters_groupBox);
 
@@ -195,18 +205,20 @@ public:
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-style:italic; color:#aa00ff;\">Create Eurographics 1996 Bear</span></p></body></html>", nullptr));
 #endif // QT_CONFIG(tooltip)
         boxMesh->setText(QCoreApplication::translate("Assets", "Box Mesh", nullptr));
-#if QT_CONFIG(tooltip)
-        resetcameraButton->setToolTip(QCoreApplication::translate("Assets", "<html><head/><body><p><span style=\" color:#5500ff;\">Callback #03</span></p><p><span style=\" font-style:italic; color:#aa00ff;\">Create Eurographics 1996 Bird</span></p></body></html>", nullptr));
-#endif // QT_CONFIG(tooltip)
-        resetcameraButton->setText(QCoreApplication::translate("Assets", "Reset Camera", nullptr));
         Parameters_groupBox->setTitle(QString());
         groupBox_4->setTitle(QCoreApplication::translate("Assets", " Statistics", nullptr));
         label_2->setText(QCoreApplication::translate("Assets", "Vertex", nullptr));
         label_3->setText(QCoreApplication::translate("Assets", "Triangles", nullptr));
         lineEdit->setText(QString());
-        groupBox_13->setTitle(QCoreApplication::translate("Assets", "Shading", nullptr));
+        ShadingBox->setTitle(QCoreApplication::translate("Assets", "Shading", nullptr));
         radioShadingButton_1->setText(QCoreApplication::translate("Assets", "Normal", nullptr));
         wireframe->setText(QCoreApplication::translate("Assets", "Wireframe", nullptr));
+        CameraBox->setTitle(QCoreApplication::translate("Assets", "Camera", nullptr));
+        orthographic_mode->setText(QCoreApplication::translate("Assets", "Orthographic", nullptr));
+#if QT_CONFIG(tooltip)
+        resetcameraButton->setToolTip(QCoreApplication::translate("Assets", "<html><head/><body><p><span style=\" color:#5500ff;\">Callback #03</span></p><p><span style=\" font-style:italic; color:#aa00ff;\">Create Eurographics 1996 Bird</span></p></body></html>", nullptr));
+#endif // QT_CONFIG(tooltip)
+        resetcameraButton->setText(QCoreApplication::translate("Assets", "Reset Camera", nullptr));
         menuFile->setTitle(QCoreApplication::translate("Assets", "File", nullptr));
     } // retranslateUi
 

@@ -29,6 +29,7 @@ void MainWindow::CreateActions()
 	connect(uiw.boxMesh, SIGNAL(clicked()), this, SLOT(BoxMeshExample()));
 	connect(uiw.resetcameraButton, SIGNAL(clicked()), this, SLOT(ResetCamera()));
 	connect(uiw.wireframe, SIGNAL(clicked()), this, SLOT(UpdateMaterial()));
+	connect(uiw.orthographic_mode, SIGNAL(clicked()), this, SLOT(ChangeCameraProjection()));
 
 	// Widget edition
 	connect(meshWidget, SIGNAL(_signalEditSceneLeft(const Ray&)), this, SLOT(editingSceneLeft(const Ray&)));
@@ -68,4 +69,8 @@ void MainWindow::UpdateMaterial()
 void MainWindow::ResetCamera()
 {
 	meshWidget->SetCamera(Camera(Vector(-10.0), Vector(0.0)));
+}
+
+void MainWindow::ChangeCameraProjection() {
+	meshWidget->SetCameraMode(uiw.orthographic_mode->isChecked());
 }
