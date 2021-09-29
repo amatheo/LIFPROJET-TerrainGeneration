@@ -13,7 +13,7 @@ typedef std::chrono::time_point<std::chrono::high_resolution_clock> MyChrono;
 class RenderingProfiler
 {
 public:
-  bool enabled = false;			//!< Flag linked to UI.
+  bool enabled = true;			//!< Flag linked to UI.
 
   GLuint query;					//!< GL Query for stats
   GLuint64 elapsedTimeGPU;		//!< GPU rendering time for a frame.
