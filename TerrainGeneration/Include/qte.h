@@ -13,6 +13,7 @@ private:
 
 	MeshWidget* meshWidget;		//!< Viewer
 	MeshColor meshColor;		//!< Mesh.
+	QString imagePath;
 
 public:
 	MainWindow();
@@ -27,6 +28,8 @@ public slots:
 	void ResetCamera();
 	void UpdateMaterial();
 	void ChangeCameraProjection();
+	void ChangeHeightmapImage();
+	void GeneratePlaneMesh();
 };
 
 #endif
