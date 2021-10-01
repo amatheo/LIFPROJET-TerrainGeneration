@@ -1,5 +1,9 @@
 #include "qte.h"
 
+
+#include <QtWidgets/qfiledialog.h>
+#include "../terrain.h"
+
 MainWindow::MainWindow()
 {
 	// Chargement de l'interface
@@ -12,6 +16,7 @@ MainWindow::MainWindow()
 	GLlayout->setContentsMargins(0, 0, 0, 0);
 	uiw.widget_GL->setLayout(GLlayout);
 
+	QString imagePath;
 	// Creation des connect
 	CreateActions();
 
@@ -30,6 +35,8 @@ void MainWindow::CreateActions()
 	connect(uiw.resetcameraButton, SIGNAL(clicked()), this, SLOT(ResetCamera()));
 	connect(uiw.wireframe, SIGNAL(clicked()), this, SLOT(UpdateMaterial()));
 	connect(uiw.orthographic_mode, SIGNAL(clicked()), this, SLOT(ChangeCameraProjection()));
+	connect(uiw.planeMeshButton, SIGNAL(clicked()), this, SLOT(GeneratePlaneMesh()));
+	connect(uiw.loadHeightmapButton, SIGNAL(clicked()), this, SLOT(ChangeHeightmapImage()));
 
 	// Widget edition
 	connect(meshWidget, SIGNAL(_signalEditSceneLeft(const Ray&)), this, SLOT(editingSceneLeft(const Ray&)));
@@ -73,4 +80,43 @@ void MainWindow::ResetCamera()
 
 void MainWindow::ChangeCameraProjection() {
 	meshWidget->SetCameraMode(uiw.orthographic_mode->isChecked());
+}
+
+
+void MainWindow::GeneratePlaneMesh() {
+
+	int width = uiw.planeMesh_X->value();
+	int height = uiw.planeMesh_Y->value();
+	int resolutionX = uiw.planeMesh_Res_X->value();
+	int resolutionY = uiw.planeMesh_Res_Y->value();
+
+	Terrain terrain(width, height, resolutionX, resolutionY);
+
+	if (uiw.useHeightmap->isChecked()) {
+		QImage img(imagePath);
+		terrain.heightmap = img;
+		terrain.heightscale = 5;
+	}
+	terrain.Generate();
+	
+	meshColor = MeshColor(terrain);
+
+	meshWidget->ClearAll();
+	meshWidget->AddMesh("PlaneMesh", meshColor);
+
+	uiw.lineEdit->setText(QString::number(meshColor.Vertexes()));
+	uiw.lineEdit_2->setText(QString::number(meshColor.Triangles()));
+
+	UpdateMaterial();
+}
+
+void MainWindow::ChangeHeightmapImage() {
+	imagePath = QFileDialog::getOpenFileName(this, tr("Open Image"), "/", tr("Image Files (*.png *.jpg)"));
+	if (!imagePath.isEmpty()) {
+		QPixmap preview(imagePath);
+		if (!preview.isNull()) {
+			uiw.selectedImage->clear();
+			uiw.selectedImage->setPixmap(preview);
+		}
+	}
 }

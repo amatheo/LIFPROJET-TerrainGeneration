@@ -13,7 +13,7 @@
   <PropertyGroup Label="Globals">
     <ProjectGuid>{7CFDA425-B3AA-45B2-834A-14C2E3753C94}</ProjectGuid>
     <RootNamespace>AppTinyMesh</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.18362.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
     <ProjectName>TerrainGeneration</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -112,6 +112,7 @@
     <ClCompile Include="Source\ray.cpp" />
     <ClCompile Include="Source\shader-api.cpp" />
     <ClCompile Include="Source\triangle.cpp" />
+    <ClCompile Include="terrain.cpp" />
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="Include\qte.h">
@@ -161,6 +162,7 @@
     <ClInclude Include="Include\meshcolor.h" />
     <ClInclude Include="Include\ray.h" />
     <ClInclude Include="Include\shader-api.h" />
+    <ClInclude Include="terrain.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Shaders\mesh.glsl" />
