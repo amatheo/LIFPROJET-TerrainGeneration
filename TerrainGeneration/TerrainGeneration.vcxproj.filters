@@ -41,6 +41,7 @@
     <ClCompile Include="Source\terrain.cpp">
       <Filter>Source\Core</Filter>
     </ClCompile>
+    <ClCompile Include="terrain.cpp" />
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="Include\qte.h">
@@ -103,6 +104,9 @@
       <Filter>Include</Filter>
     </ClInclude>
     <ClInclude Include="Include\terrain.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\scalar-field.h">
       <Filter>Include</Filter>
     </ClInclude>
   </ItemGroup>

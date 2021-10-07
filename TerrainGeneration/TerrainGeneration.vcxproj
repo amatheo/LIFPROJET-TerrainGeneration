@@ -157,6 +157,7 @@
     <ClInclude Include="Include\camera.h" />
     <ClInclude Include="Include\color.h" />
     <ClInclude Include="Include\evector.h" />
+    <ClInclude Include="Include\scalar-field.h" />
     <ClInclude Include="Include\mathematics.h" />
     <ClInclude Include="Include\mesh.h" />
     <ClInclude Include="Include\meshcolor.h" />
