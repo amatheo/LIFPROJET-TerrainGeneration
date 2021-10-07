@@ -12,7 +12,7 @@ class Terrain : public Mesh
 public:
 	Terrain(int width, int height, int resolutionX, int resolutionY, QImage heightmap, double heightscale);
 	Terrain(int width, int height, int resolutionX, int resolutionY);
-	
+	Terrain(QImage image, Box box, int za, int zb);
 	
 	~Terrain();
 	
@@ -27,7 +27,7 @@ public:
 	QImage GenerateHeightmap();
 
 private:
+	void InitializeTerrain(QImage image, Box box, int za, int zb);
 	void InitializePlane(double scaleX, double scaleY, int resolutionX, int resolutionY);
-	void InitializeTerrain(double scaleX, double scaleY, int resolutionX, int resolutionY, QImage heightmap, double heightscale);
 };
 #endif

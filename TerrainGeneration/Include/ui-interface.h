@@ -114,7 +114,7 @@ public:
         Objects_groupBox->setMinimumSize(QSize(350, 250));
         LoadingBox = new QGroupBox(Objects_groupBox);
         LoadingBox->setObjectName(QString::fromUtf8("LoadingBox"));
-        LoadingBox->setGeometry(QRect(20, 20, 311, 251));
+        LoadingBox->setGeometry(QRect(20, 20, 311, 191));
         LoadingBox->setFlat(false);
         boxMesh = new QPushButton(LoadingBox);
         boxMesh->setObjectName(QString::fromUtf8("boxMesh"));

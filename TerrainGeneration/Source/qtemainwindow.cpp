@@ -2,7 +2,7 @@
 
 
 #include <QtWidgets/qfiledialog.h>
-#include "../terrain.h"
+#include "terrain.h"
 
 MainWindow::MainWindow()
 {

@@ -9,6 +9,13 @@ Terrain::Terrain(int _width, int _height, int _resolutionX, int _resolutionY)
 	this->resolutionY = _resolutionY;
 }
 
+Terrain::Terrain(QImage image, Box box, int za, int zb)
+{
+	//Defined resolution
+	this->resolutionX = this->resolutionY = 10;
+
+}
+
 Terrain::Terrain(int _width, int _height, int _resolutionX, int _resolutionY, QImage _heightmap, double _heightscale)
 {
 	Terrain(_width, _height, _resolutionX, _resolutionY);
@@ -26,33 +33,22 @@ void Terrain::Generate()
 		this->InitializePlane(width, height, resolutionX, resolutionY);
 		this->GenerateHeightmap();
 	}
-	else {
-		this->InitializeTerrain(width, height, resolutionX, resolutionY, heightmap, height);
-	}
 }
 
-QImage Terrain::GenerateHeightmap()
-{
-	QImage img(resolutionX+1, resolutionY + 1, QImage::Format::Format_Grayscale8);
-	for (int x = 0; x < resolutionX+1; x++)
-	{
-		for (int y = 0; y < resolutionY+1; y++)
-		{
-			//TODO
-		}
-	}
-	return img;
-}
 
-void Terrain::InitializeTerrain(double scaleX, double scaleY, int resolutionX, int resolutionY, QImage heightmap, double heightscale)
+void Terrain::InitializeTerrain(QImage image, Box box, int za, int zb)
 {
+
+	Vector a = box[0];
+	Vector b = box[1];
+	float longueurX = b[0] - a[0];
+	float longueurY = b[1] - a[1];
+	
+
 	int nbWidthVertex = resolutionX + 1;
 	int nbHeightVertex = resolutionY + 1;
 	int nbTotalVertex = nbHeightVertex * nbWidthVertex;
 
-	//Heightmap processing
-	QSize scaleFactor(nbWidthVertex, nbHeightVertex);
-	heightmap.scaled(scaleFactor, Qt::IgnoreAspectRatio, Qt::TransformationMode::SmoothTransformation);
 
 	//  Optimizing:
 	//  Also resize narray and varray
@@ -63,15 +59,11 @@ void Terrain::InitializeTerrain(double scaleX, double scaleY, int resolutionX, i
 	{
 		for (int y = 0; y < nbHeightVertex; y++)
 		{
-			QRgb color = heightmap.pixel(x, y);
-			int gradient = qGray(color);
-
-			double xposition = ((double)scaleX / (double)resolutionX) * (double)x;
-			double yposition = ((double)scaleY / (double)resolutionY) * (double)y;
-			double zposition = (2.0 * gradient / 255) * heightscale;
+			float xposition = (float)x;
+			double yposition = (float)y;
 
 			int index = (nbHeightVertex * x) + y;
-			vertices[index] = Vector(xposition, yposition, zposition);
+			vertices[index] = Vector(xposition, yposition, 0);
 			normals[index] = Vector(0.0f, 0.0f, 1.0f);
 		}
 	}

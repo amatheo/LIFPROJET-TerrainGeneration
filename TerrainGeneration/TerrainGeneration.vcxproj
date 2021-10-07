@@ -113,7 +113,6 @@
     <ClCompile Include="Source\shader-api.cpp" />
     <ClCompile Include="Source\terrain.cpp" />
     <ClCompile Include="Source\triangle.cpp" />
-    <ClCompile Include="terrain.cpp" />
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="Include\qte.h">
