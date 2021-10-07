@@ -1,5 +1,12 @@
 #include "scalar-field.h"
 
+ScalarField::ScalarField() {
+	this->box = Box();
+	this->nx = 0;
+	this->ny = 0;
+}
+
+
 float ScalarField::getHeight(int x, int y) {
 	int index = getIndex(x, y);
 	return this->v2[index];
