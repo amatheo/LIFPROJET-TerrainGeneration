@@ -110,9 +110,11 @@
     <ClCompile Include="Source\realtime-moc.cpp" />
     <ClCompile Include="Source\qtemainwindow.cpp" />
     <ClCompile Include="Source\ray.cpp" />
+    <ClCompile Include="Source\scalar-field.cpp" />
     <ClCompile Include="Source\shader-api.cpp" />
     <ClCompile Include="Source\terrain.cpp" />
     <ClCompile Include="Source\triangle.cpp" />
+    <ClCompile Include="Source\vectorfield.cpp" />
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="Include\qte.h">
@@ -164,6 +166,7 @@
     <ClInclude Include="Include\ray.h" />
     <ClInclude Include="Include\shader-api.h" />
     <ClInclude Include="Include\terrain.h" />
+    <ClInclude Include="Include\vectorfield.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Shaders\mesh.glsl" />
