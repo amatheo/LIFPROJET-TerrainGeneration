@@ -11,8 +11,8 @@ private:
 
 public:
 	ScalarField();
-	Box box;//box containing every point of the terrain
-	int nx, ny;//length, width
+	Box box;
+	int nx, ny;
 	float getHeight(int x, int y);       //the method val() 
 	float slope(int x, int y);
 	Vector gradient(int x, int y);
