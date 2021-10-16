@@ -6,8 +6,8 @@ ScalarField::ScalarField() {
 	this->ny = 0;
 }
 
+
 float ScalarField::getHeight(int x, int y) {
-	int index = getIndex(x, y);
 	return this->heightVector[index];
 }
 
@@ -23,4 +23,4 @@ float ScalarField::slope(int x, int y) {
 
 int ScalarField::getIndex(int x, int y) {
 	return (x * ny) + y;
-}
+}    return (y * getNx()) + x;
