@@ -5,9 +5,6 @@
     <ClCompile Include="Source\qtemainwindow.cpp">
       <Filter>Source\Window</Filter>
     </ClCompile>
-    <ClCompile Include="Source\moc_qte.cpp">
-      <Filter>Interface</Filter>
-    </ClCompile>
     <ClCompile Include="Source\evector.cpp">
       <Filter>Source\Core</Filter>
     </ClCompile>
@@ -35,11 +32,20 @@
     <ClCompile Include="Source\triangle.cpp">
       <Filter>Source\Core</Filter>
     </ClCompile>
-    <ClCompile Include="Source\realtime-moc.cpp">
-      <Filter>Interface</Filter>
-    </ClCompile>
     <ClCompile Include="Source\terrain.cpp">
       <Filter>Source\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\vectorfield.cpp">
+      <Filter>Source\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\scalar-field.cpp">
+      <Filter>Source\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\moc_qte.cpp">
+      <Filter>Interface</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\realtime-moc.cpp">
+      <Filter>Interface</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -103,6 +109,12 @@
       <Filter>Include</Filter>
     </ClInclude>
     <ClInclude Include="Include\terrain.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\scalar-field.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\vectorfield.h">
       <Filter>Include</Filter>
     </ClInclude>
   </ItemGroup>

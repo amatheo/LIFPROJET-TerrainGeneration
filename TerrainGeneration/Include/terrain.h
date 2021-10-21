@@ -5,29 +5,21 @@
 #include <QtGui/QImage>
 #include <QtCore/QVector>
 
-#include "mesh.h"
+#include "scalar-field.h"
 
-class Terrain : public Mesh
+class Terrain : public ScalarField
 {
 public:
-	Terrain(int width, int height, int resolutionX, int resolutionY, QImage heightmap, double heightscale);
-	Terrain(int width, int height, int resolutionX, int resolutionY);
-	
-	
-	~Terrain();
-	
-	int width;
-	int height;
-	int resolutionX;
-	int resolutionY;
+	int za, zb;
 	QImage heightmap;
-	double heightscale;
 
-	void Generate();
-	QImage GenerateHeightmap();
-
-private:
-	void InitializePlane(double scaleX, double scaleY, int resolutionX, int resolutionY);
-	void InitializeTerrain(double scaleX, double scaleY, int resolutionX, int resolutionY, QImage heightmap, double heightscale);
+	Terrain();
+	Terrain(QImage image, Box box, int za, int zb);
+	
+	Vector getPoint(int i, int j);
+	Vector getNormal(int i, int j);
+	ScalarField Slope;
+	Mesh toMesh();
+	~Terrain();
 };
 #endif

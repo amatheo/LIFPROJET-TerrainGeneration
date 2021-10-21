@@ -2,7 +2,7 @@
 
 
 #include <QtWidgets/qfiledialog.h>
-#include "../terrain.h"
+#include "terrain.h"
 
 MainWindow::MainWindow()
 {
@@ -16,7 +16,6 @@ MainWindow::MainWindow()
 	GLlayout->setContentsMargins(0, 0, 0, 0);
 	uiw.widget_GL->setLayout(GLlayout);
 
-	QString imagePath;
 	// Creation des connect
 	CreateActions();
 
@@ -35,8 +34,7 @@ void MainWindow::CreateActions()
 	connect(uiw.resetcameraButton, SIGNAL(clicked()), this, SLOT(ResetCamera()));
 	connect(uiw.wireframe, SIGNAL(clicked()), this, SLOT(UpdateMaterial()));
 	connect(uiw.orthographic_mode, SIGNAL(clicked()), this, SLOT(ChangeCameraProjection()));
-	connect(uiw.planeMeshButton, SIGNAL(clicked()), this, SLOT(GeneratePlaneMesh()));
-	connect(uiw.loadHeightmapButton, SIGNAL(clicked()), this, SLOT(ChangeHeightmapImage()));
+	connect(uiw.terrainMeshButton, SIGNAL(clicked()), this, SLOT(GeneratePlaneMesh()));
 
 	// Widget edition
 	connect(meshWidget, SIGNAL(_signalEditSceneLeft(const Ray&)), this, SLOT(editingSceneLeft(const Ray&)));
@@ -85,38 +83,18 @@ void MainWindow::ChangeCameraProjection() {
 
 void MainWindow::GeneratePlaneMesh() {
 
-	int width = uiw.planeMesh_X->value();
-	int height = uiw.planeMesh_Y->value();
-	int resolutionX = uiw.planeMesh_Res_X->value();
-	int resolutionY = uiw.planeMesh_Res_Y->value();
+	QImage image = QImage();
 
-	Terrain terrain(width, height, resolutionX, resolutionY);
+	Box b = Box(Vector(2, 5, 0), Vector(10, 3, 0));
+	Terrain terrain(image, b, 10, 0);
 
-	if (uiw.useHeightmap->isChecked()) {
-		QImage img(imagePath);
-		terrain.heightmap = img;
-		terrain.heightscale = 5;
-	}
-	terrain.Generate();
-	
-	meshColor = MeshColor(terrain);
+	meshColor = MeshColor(terrain.toMesh());
 
 	meshWidget->ClearAll();
-	meshWidget->AddMesh("PlaneMesh", meshColor);
+	meshWidget->AddMesh("TerrainMesh", meshColor);
 
 	uiw.lineEdit->setText(QString::number(meshColor.Vertexes()));
 	uiw.lineEdit_2->setText(QString::number(meshColor.Triangles()));
 
 	UpdateMaterial();
-}
-
-void MainWindow::ChangeHeightmapImage() {
-	imagePath = QFileDialog::getOpenFileName(this, tr("Open Image"), "/", tr("Image Files (*.png *.jpg)"));
-	if (!imagePath.isEmpty()) {
-		QPixmap preview(imagePath);
-		if (!preview.isNull()) {
-			uiw.selectedImage->clear();
-			uiw.selectedImage->setPixmap(preview);
-		}
-	}
 }
