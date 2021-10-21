@@ -7,7 +7,7 @@ ScalarField::ScalarField()
 
 ScalarField::ScalarField(Box data, int nbX, int nbY) {
 	//constructor used by terrain cpp
-
+	//added a small text
 	this->box = data;
 	this->ni = nbX;
 	this->nj = nbY;
