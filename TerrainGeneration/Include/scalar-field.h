@@ -1,4 +1,7 @@
-#include "terrain.h"
+#pragma once
+#ifndef __ScalarField__
+#define __ScalarField__
+
 #include "evector.h"
 #include "mesh.h"
 #include <vector>
@@ -9,20 +12,24 @@ using namespace std;
 class ScalarField {
 
 private:
-
+	float intervalX, intervalY;// self-explanatory
+	Box box; // Contains a b point needed to plane
+	vector<float> heightVector;
 public:
+	int ni, nj;//nb point X & y
+
 	ScalarField();
 	ScalarField(Box data, int nbX, int nbY);
-	Box box;//box containing every point of the terrain
-	float intervalX, intervalY;// self-explanatory
-	int nx, ny;//length, width
-	float getHeight(int x, int y);       //the method val() 
+	
+	float getHeight(int i, int j);//the method val() 
 	float getHeight(int index);
-	float slope(int x, int y);
-	Vector gradient(int x, int y);
-	int getIndex(int x, int y);
-	vector<float> heightVector;
+	float slope(int i, int j);
+	Vector gradient(int i, int j);
+	int getIndex(int i, int j);
+	Vector get2dPoint(int i, int j); // Z will always be 0
+protected:
 	VectorField vecField;
 };
 
+#endif
 

@@ -1,134 +1,70 @@
 #include "terrain.h"
 #include <QtGui/QImage>
 
-Terrain::Terrain(int _width, int _height, int _resolutionX, int _resolutionY)
+Terrain::Terrain(QImage image, Box box, int za, int zb):ScalarField(box, 25, 25)
 {
-	this->width = _width;
-	this->height = _height;
-	this->resolutionX = _resolutionX;
-	this->resolutionY = _resolutionY;
 }
 
-Terrain::Terrain(QImage image, Box box, int za, int zb)
+Terrain::Terrain() : ScalarField()
 {
-	//Defined resolution
-	this->resolutionX = this->resolutionY = 10;
-
 }
 
-Terrain::Terrain(int _width, int _height, int _resolutionX, int _resolutionY, QImage _heightmap, double _heightscale)
+Vector Terrain::getPoint(int i, int j)
 {
-	Terrain(_width, _height, _resolutionX, _resolutionY);
-	this->heightmap = _heightmap;
-	this->heightscale = _heightscale;
+	Vector vec = Vector();
+	vec= this->get2dPoint(i, j);
+	vec[2] = this->getHeight(i, j);
+	return vec;
+}
+
+Vector Terrain::getNormal(int i, int j)
+{
+	return Vector::Z;
+}
+
+Mesh Terrain::toMesh()
+{
+	QVector<Vector> vertices;
+	QVector<int> indices;
+	for (int i = 0; i < this->ni; i++) {
+
+		for (int j = 0; j < this->nj; j++) {
+			Vector v = getPoint(i, j);
+			vertices.push_back(v);
+		}
+	}
+
+	for (int i = 0; i < this->ni-1; i++) {
+
+		for (int j = 0; j < this->nj-1; j++) {
+			//Top Left
+			int tl = getIndex(i,j);
+			//Top Right
+			int tr = getIndex(i+1, j);
+			//Bottom Left
+			int bl = getIndex(i, j+1);
+			//Bottom Right
+			int br = getIndex(i + 1, j + 1);
+
+			//First triangle
+			indices.push_back(tl);
+			indices.push_back(tr);
+			indices.push_back(bl);
+
+			//Second Triangle
+			indices.push_back(tr);
+			indices.push_back(br);
+			indices.push_back(bl);
+		}
+	}
+	
+	//QVector<Vector> normals = vertices;
+	Mesh m = Mesh(vertices, indices);
+	m.SmoothNormals(); //Else list of normal is not same as list of vertices !!DIRTY FIX
+	return m;
 }
 
 Terrain::~Terrain()
 {
 }
 
-void Terrain::Generate()
-{
-	if (this->heightmap.isNull()) {
-		this->InitializePlane(width, height, resolutionX, resolutionY);
-		this->GenerateHeightmap();
-	}
-}
-
-
-void Terrain::InitializeTerrain(QImage image, Box box, int za, int zb)
-{
-
-	Vector a = box[0];
-	Vector b = box[1];
-	float longueurX = b[0] - a[0];
-	float longueurY = b[1] - a[1];
-	
-
-	int nbWidthVertex = resolutionX + 1;
-	int nbHeightVertex = resolutionY + 1;
-	int nbTotalVertex = nbHeightVertex * nbWidthVertex;
-
-
-	//  Optimizing:
-	//  Also resize narray and varray
-	vertices.resize(nbTotalVertex);
-	normals.resize(nbTotalVertex);
-
-	for (int x = 0; x < nbWidthVertex; x++) 
-	{
-		for (int y = 0; y < nbHeightVertex; y++)
-		{
-			float xposition = (float)x;
-			double yposition = (float)y;
-
-			int index = (nbHeightVertex * x) + y;
-			vertices[index] = Vector(xposition, yposition, 0);
-			normals[index] = Vector(0.0f, 0.0f, 1.0f);
-		}
-	}
-
-	for (int x = 0; x < nbWidthVertex - 1; x++) 
-	{
-		for (int y = 0; y < nbHeightVertex - 1; y++)
-		{
-			//Top Left
-			int tl = (nbHeightVertex * x) + y;
-			//Top Right
-			int tr = (nbHeightVertex * (x + 1)) + y;
-			//Bottom Left
-			int bl = (nbHeightVertex * x) + (y + 1);
-			//Bottom Right
-			int br = (nbHeightVertex * (x + 1)) + (y + 1);
-			//Add first triangle
-			AddTriangle(tl, tr, br, 0);
-			//Add second triangle
-			AddTriangle(bl, tl, br, 0);
-		}
-	}
-}
-
-
-
-void Terrain::InitializePlane(double scaleX, double scaleY, int resolutionX, int resolutionY)
-{
-	int nbWidthVertex = resolutionX + 1;
-	int nbHeightVertex = resolutionY + 1;
-	int nbTotalVertex = nbHeightVertex * nbWidthVertex;
-
-	//  Optimizing:
-	//  Also resize narray and varray
-	vertices.resize(nbTotalVertex);
-	normals.resize(nbTotalVertex);
-
-	for (int x = 0; x < nbWidthVertex; x++) {
-		for (int y = 0; y < nbHeightVertex; y++)
-		{
-			int index = (nbHeightVertex * x) + y;
-
-			double xposition = ((double)scaleX / (double)resolutionX) * (double)x;
-			double yposition = ((double)scaleY / (double)resolutionY) * (double)y;
-
-			vertices[index] = Vector(xposition, yposition, (double)0);
-			normals[index] = Vector(0.0f, 0.0f, 1.0f);
-		}
-	}
-
-	for (int x = 0; x < nbWidthVertex-1; x++) {
-		for (int y = 0; y < nbHeightVertex-1; y++)
-		{
-			//Top Left
-			int tl = (nbHeightVertex * x) + y;
-			//Top Right
-			int tr = (nbHeightVertex * (x+1)) + y;
-			//Bottom Left
-			int bl = (nbHeightVertex * x) + (y + 1);
-			//Bottom Right
-			int br = (nbHeightVertex * (x+1)) + (y + 1);
-			//Add first triangle
-			AddTriangle(tl, tr, br, 0);
-			//Add second triangle
-			AddTriangle(bl, tl, br, 0);
-		}
-	}
-}

@@ -28,7 +28,6 @@ public slots:
 	void ResetCamera();
 	void UpdateMaterial();
 	void ChangeCameraProjection();
-	void ChangeHeightmapImage();
 	void GeneratePlaneMesh();
 };
 

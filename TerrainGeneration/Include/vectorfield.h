@@ -9,8 +9,10 @@ using namespace std;
 class VectorField {
 public:
 	vector<Vector> v;
+	VectorField();
 	VectorField(vector<Vector> vectorArray);
 	VectorField(int size);
+	
 
 	//Access Vector
 	Vector operator[] (int) const;

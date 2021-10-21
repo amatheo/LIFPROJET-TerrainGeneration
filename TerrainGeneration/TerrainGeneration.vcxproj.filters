@@ -5,9 +5,6 @@
     <ClCompile Include="Source\qtemainwindow.cpp">
       <Filter>Source\Window</Filter>
     </ClCompile>
-    <ClCompile Include="Source\moc_qte.cpp">
-      <Filter>Interface</Filter>
-    </ClCompile>
     <ClCompile Include="Source\evector.cpp">
       <Filter>Source\Core</Filter>
     </ClCompile>
@@ -35,9 +32,6 @@
     <ClCompile Include="Source\triangle.cpp">
       <Filter>Source\Core</Filter>
     </ClCompile>
-    <ClCompile Include="Source\realtime-moc.cpp">
-      <Filter>Interface</Filter>
-    </ClCompile>
     <ClCompile Include="Source\terrain.cpp">
       <Filter>Source\Core</Filter>
     </ClCompile>
@@ -46,6 +40,12 @@
     </ClCompile>
     <ClCompile Include="Source\scalar-field.cpp">
       <Filter>Source\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\moc_qte.cpp">
+      <Filter>Interface</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\realtime-moc.cpp">
+      <Filter>Interface</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

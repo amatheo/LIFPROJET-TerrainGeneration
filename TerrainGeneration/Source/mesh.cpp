@@ -23,7 +23,7 @@ Indices must have a size multiple of three (three for triangle vertices and thre
 */
 Mesh::Mesh(const QVector<Vector>& vertices, const QVector<int>& indices) :vertices(vertices), varray(indices)
 {
-  normals.reserve(vertices.size());
+  normals.reserve(vertices.size()); //Reserve do not resize
   normals.fill(Vector::Z);
 }
 
@@ -70,7 +70,7 @@ void Mesh::SmoothNormals()
 
   // Initialize 
   normals.fill(Vector(0.0), vertices.size());
-
+  
   narray = varray;
 
   // Accumulate normals

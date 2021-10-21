@@ -1,38 +1,38 @@
 #include "scalar-field.h"
 
-ScalarField::ScalarField() {
-	this->box = Box();
-	this->nx = 0;
-	this->ny = 0;
+
+ScalarField::ScalarField()
+{
 }
+
 ScalarField::ScalarField(Box data, int nbX, int nbY) {
 	//constructor used by terrain cpp
 
 	this->box = data;
-	this->nx = nbX;
-	this->ny = nbY;
-	this->intervalX =(/* abs(*/ this->box[1][0] - this->box[0][0]) / (this->nx - 1);
-	this->intervalY = (/*abs(*/ this->box[1][1] - this->box[0][1]) / (this->ny - 1);
+	this->ni = nbX;
+	this->nj = nbY;
+
+	this->intervalX =(/* abs(*/ this->box[1][0] - this->box[0][0]) / (this->ni - 1);
+	this->intervalY = (/*abs(*/ this->box[1][1] - this->box[0][1]) / (this->nj - 1);
 	//i dont think using abs is a good idea: we would lose the way and have incorrect data, but i struggle to exactly explain why
 
-	int position;
-	for (int x = 0; x < this->nx; x++) {
+	for (int x = 0; x < this->ni; x++) {
 
-		for (int y = 0; y < this->ny; y++) {
+		for (int y = 0; y < this->nj; y++) {
+			int position;
 			position = getIndex(x, y);
-			this->vecField[position] = Vector(this->intervalX * x + this->box[0][0], this->intervalY * y + this->box[0][1], 0);
+			this->vecField.v.push_back(Vector(this->intervalX * x + this->box[0][0], this->intervalY * y + this->box[0][1], 0));
 			//i add the length to the starting point from data[0], so it includeds every possibility and is clean
-			this->heightVector[position] = 0;//here we fill it separately
+			this->heightVector.push_back(0);//here we fill it separately
+			std::cout << "added Vector at pos : " << position << endl;
 		}
 	}
-	//box stay almost untouched
-	
 }
 
 
-float ScalarField::getHeight(int x, int y) {
+float ScalarField::getHeight(int i, int j) {
 	//gives height of the point in x y, stored in heightVector
-	int index = getIndex(x, y);
+	int index = getIndex(i, j);
 	return this->heightVector[index];
 }
 
@@ -41,36 +41,36 @@ float ScalarField::getHeight(int index) {
 	return this->heightVector[index];
 }
 
-Vector ScalarField::gradient(int x, int y) {
+Vector ScalarField::gradient(int i, int j) {
 	//the 4 points surrounding the original point
 	int prevXId;
 	int prevYId;
 	int succXId;
 	int succYId;
 	// covering case of calculating at borders
-	if (x == 0) {
-		prevXId = getIndex(x, y);
+	if (i == 0) {
+		prevXId = getIndex(i, j);
 	}
 	else {
-		prevXId = getIndex(x - 1, y);
+		prevXId = getIndex(i - 1, j);
 	}
-	if (x == nx) {
-		succXId = getIndex(x, y);
-	}
-	else {
-		succXId = getIndex(x + 1, y);
-	}
-	if (y == 0) {
-		prevYId = getIndex(x, y);
+	if (i == ni) {
+		succXId = getIndex(i, j);
 	}
 	else {
-		prevYId = getIndex(x, y - 1);
+		succXId = getIndex(i + 1, j);
 	}
-	if (y == ny) {
-		succYId = getIndex(x, y);
+	if (j == 0) {
+		prevYId = getIndex(i, j);
 	}
 	else {
-		succYId = getIndex(x, y + 1);
+		prevYId = getIndex(i, j - 1);
+	}
+	if (j == nj) {
+		succYId = getIndex(i, j);
+	}
+	else {
+		succYId = getIndex(i, j + 1);
 	}
 	/*
 	*gradient missunderstood
@@ -91,13 +91,19 @@ Vector ScalarField::gradient(int x, int y) {
 	return G;
 }
 
-float ScalarField::slope(int x, int y) {
+float ScalarField::slope(int i, int j) {
 	//is ok, and very simple
-	Vector g = gradient(x, y);
+	Vector g = gradient(i, j);
 	return Norm(g);
 }
 
-int ScalarField::getIndex(int x, int y) {
+int ScalarField::getIndex(int i, int j) {
 	//since vecFGield and heightVectore are one dimensionnal, we need to calculate where the data for the point in x y is stored
-	return (x * ny) + y;
+	return (i * nj) + j;
+}
+
+Vector ScalarField::get2dPoint(int i, int j)
+{
+	int pos = getIndex(i, j);
+	return vecField[pos];
 }

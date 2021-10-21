@@ -22,7 +22,6 @@
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QRadioButton>
-#include <QtWidgets/QSpinBox>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -44,16 +43,7 @@ public:
     QGroupBox *Objects_groupBox;
     QGroupBox *LoadingBox;
     QPushButton *boxMesh;
-    QPushButton *planeMeshButton;
-    QLabel *label;
-    QLabel *label_4;
-    QSpinBox *planeMesh_Y;
-    QSpinBox *planeMesh_X;
-    QSpinBox *planeMesh_Res_X;
-    QLabel *label_5;
-    QLabel *label_6;
-    QSpinBox *planeMesh_Res_Y;
-    QCheckBox *useHeightmap;
+    QPushButton *terrainMeshButton;
     QWidget *widget_GL;
     QGroupBox *Parameters_groupBox;
     QGroupBox *groupBox_4;
@@ -67,9 +57,6 @@ public:
     QGroupBox *CameraBox;
     QCheckBox *orthographic_mode;
     QPushButton *resetcameraButton;
-    QGroupBox *groupBox;
-    QLabel *selectedImage;
-    QPushButton *loadHeightmapButton;
     QMenuBar *menubar;
     QMenu *menuFile;
 
@@ -114,59 +101,16 @@ public:
         Objects_groupBox->setMinimumSize(QSize(350, 250));
         LoadingBox = new QGroupBox(Objects_groupBox);
         LoadingBox->setObjectName(QString::fromUtf8("LoadingBox"));
-        LoadingBox->setGeometry(QRect(20, 20, 311, 191));
+        LoadingBox->setGeometry(QRect(20, 20, 311, 111));
         LoadingBox->setFlat(false);
         boxMesh = new QPushButton(LoadingBox);
         boxMesh->setObjectName(QString::fromUtf8("boxMesh"));
         boxMesh->setGeometry(QRect(20, 20, 81, 23));
         boxMesh->setCheckable(false);
-        planeMeshButton = new QPushButton(LoadingBox);
-        planeMeshButton->setObjectName(QString::fromUtf8("planeMeshButton"));
-        planeMeshButton->setGeometry(QRect(20, 60, 81, 23));
-        planeMeshButton->setCheckable(false);
-        label = new QLabel(LoadingBox);
-        label->setObjectName(QString::fromUtf8("label"));
-        label->setGeometry(QRect(20, 90, 31, 21));
-        label_4 = new QLabel(LoadingBox);
-        label_4->setObjectName(QString::fromUtf8("label_4"));
-        label_4->setGeometry(QRect(20, 120, 31, 21));
-        planeMesh_Y = new QSpinBox(LoadingBox);
-        planeMesh_Y->setObjectName(QString::fromUtf8("planeMesh_Y"));
-        planeMesh_Y->setGeometry(QRect(60, 120, 42, 22));
-        planeMesh_Y->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
-        planeMesh_Y->setMinimum(1);
-        planeMesh_Y->setMaximum(500);
-        planeMesh_Y->setValue(1);
-        planeMesh_X = new QSpinBox(LoadingBox);
-        planeMesh_X->setObjectName(QString::fromUtf8("planeMesh_X"));
-        planeMesh_X->setGeometry(QRect(60, 90, 42, 22));
-        planeMesh_X->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
-        planeMesh_X->setMinimum(1);
-        planeMesh_X->setMaximum(500);
-        planeMesh_X->setValue(1);
-        planeMesh_Res_X = new QSpinBox(LoadingBox);
-        planeMesh_Res_X->setObjectName(QString::fromUtf8("planeMesh_Res_X"));
-        planeMesh_Res_X->setGeometry(QRect(190, 90, 42, 22));
-        planeMesh_Res_X->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
-        planeMesh_Res_X->setMinimum(1);
-        planeMesh_Res_X->setMaximum(400);
-        planeMesh_Res_X->setValue(1);
-        label_5 = new QLabel(LoadingBox);
-        label_5->setObjectName(QString::fromUtf8("label_5"));
-        label_5->setGeometry(QRect(120, 90, 61, 21));
-        label_6 = new QLabel(LoadingBox);
-        label_6->setObjectName(QString::fromUtf8("label_6"));
-        label_6->setGeometry(QRect(120, 120, 61, 21));
-        planeMesh_Res_Y = new QSpinBox(LoadingBox);
-        planeMesh_Res_Y->setObjectName(QString::fromUtf8("planeMesh_Res_Y"));
-        planeMesh_Res_Y->setGeometry(QRect(190, 120, 42, 22));
-        planeMesh_Res_Y->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
-        planeMesh_Res_Y->setMinimum(1);
-        planeMesh_Res_Y->setMaximum(400);
-        planeMesh_Res_Y->setValue(1);
-        useHeightmap = new QCheckBox(LoadingBox);
-        useHeightmap->setObjectName(QString::fromUtf8("useHeightmap"));
-        useHeightmap->setGeometry(QRect(20, 150, 101, 17));
+        terrainMeshButton = new QPushButton(LoadingBox);
+        terrainMeshButton->setObjectName(QString::fromUtf8("terrainMeshButton"));
+        terrainMeshButton->setGeometry(QRect(20, 60, 81, 23));
+        terrainMeshButton->setCheckable(false);
 
         hboxLayout->addWidget(Objects_groupBox);
 
@@ -227,25 +171,6 @@ public:
         resetcameraButton->setCheckable(true);
         resetcameraButton->setAutoDefault(false);
         resetcameraButton->setFlat(false);
-        groupBox = new QGroupBox(Parameters_groupBox);
-        groupBox->setObjectName(QString::fromUtf8("groupBox"));
-        groupBox->setGeometry(QRect(10, 150, 171, 191));
-        selectedImage = new QLabel(groupBox);
-        selectedImage->setObjectName(QString::fromUtf8("selectedImage"));
-        selectedImage->setGeometry(QRect(10, 20, 101, 101));
-        selectedImage->setMouseTracking(true);
-        selectedImage->setContextMenuPolicy(Qt::CustomContextMenu);
-        selectedImage->setAcceptDrops(true);
-        selectedImage->setFrameShape(QFrame::Box);
-        selectedImage->setFrameShadow(QFrame::Plain);
-        selectedImage->setTextFormat(Qt::RichText);
-        selectedImage->setScaledContents(true);
-        selectedImage->setAlignment(Qt::AlignCenter);
-        selectedImage->setTextInteractionFlags(Qt::NoTextInteraction);
-        loadHeightmapButton = new QPushButton(groupBox);
-        loadHeightmapButton->setObjectName(QString::fromUtf8("loadHeightmapButton"));
-        loadHeightmapButton->setGeometry(QRect(10, 130, 71, 23));
-        loadHeightmapButton->setCheckable(false);
 
         hboxLayout->addWidget(Parameters_groupBox);
 
@@ -294,19 +219,14 @@ public:
 #endif // QT_CONFIG(tooltip)
         boxMesh->setText(QCoreApplication::translate("Assets", "Box Mesh", nullptr));
 #if QT_CONFIG(tooltip)
-        planeMeshButton->setToolTip(QCoreApplication::translate("Assets", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+        terrainMeshButton->setToolTip(QCoreApplication::translate("Assets", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'MS Shell Dlg 2'; font-size:8pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#5500ff;\">Callback #01</span></p>\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-style:italic; color:#aa00ff;\">Create Eurographics 1996 Bear</span></p></body></html>", nullptr));
 #endif // QT_CONFIG(tooltip)
-        planeMeshButton->setText(QCoreApplication::translate("Assets", "Plane Mesh", nullptr));
-        label->setText(QCoreApplication::translate("Assets", "Width", nullptr));
-        label_4->setText(QCoreApplication::translate("Assets", "Height", nullptr));
-        label_5->setText(QCoreApplication::translate("Assets", "Resolution X", nullptr));
-        label_6->setText(QCoreApplication::translate("Assets", "Resolution Y", nullptr));
-        useHeightmap->setText(QCoreApplication::translate("Assets", "Use Heightmap", nullptr));
+        terrainMeshButton->setText(QCoreApplication::translate("Assets", "Terrain Mesh", nullptr));
         Parameters_groupBox->setTitle(QString());
         groupBox_4->setTitle(QCoreApplication::translate("Assets", " Statistics", nullptr));
         label_2->setText(QCoreApplication::translate("Assets", "Vertex", nullptr));
@@ -321,17 +241,6 @@ public:
         resetcameraButton->setToolTip(QCoreApplication::translate("Assets", "<html><head/><body><p><span style=\" color:#5500ff;\">Callback #03</span></p><p><span style=\" font-style:italic; color:#aa00ff;\">Create Eurographics 1996 Bird</span></p></body></html>", nullptr));
 #endif // QT_CONFIG(tooltip)
         resetcameraButton->setText(QCoreApplication::translate("Assets", "Reset Camera", nullptr));
-        groupBox->setTitle(QCoreApplication::translate("Assets", "Heightmap", nullptr));
-        selectedImage->setText(QCoreApplication::translate("Assets", "No image", nullptr));
-#if QT_CONFIG(tooltip)
-        loadHeightmapButton->setToolTip(QCoreApplication::translate("Assets", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'MS Shell Dlg 2'; font-size:8pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#5500ff;\">Callback #01</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-style:italic; color:#aa00ff;\">Create Eurographics 1996 Bear</span></p></body></html>", nullptr));
-#endif // QT_CONFIG(tooltip)
-        loadHeightmapButton->setText(QCoreApplication::translate("Assets", "Select File", nullptr));
         menuFile->setTitle(QCoreApplication::translate("Assets", "File", nullptr));
     } // retranslateUi
 
