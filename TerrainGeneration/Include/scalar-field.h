@@ -17,6 +17,7 @@ public:
 	float intervalX, intervalY;// self-explanatory
 	int nx, ny;//length, width
 	float getHeight(int x, int y);       //the method val() 
+	float getHeight(int index);
 	float slope(int x, int y);
 	Vector gradient(int x, int y);
 	int getIndex(int x, int y);

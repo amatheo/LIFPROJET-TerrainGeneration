@@ -8,33 +8,36 @@ ScalarField::ScalarField() {
 ScalarField::ScalarField(Box data, int nbX, int nbY) {
 	//constructor used by terrain cpp
 
-
+	this->box = data;
 	this->nx = nbX;
 	this->ny = nbY;
-	this->intervalX =(/* abs(*/ data[1][0] - data[0][0]) / (this->nx - 1);
-	this->intervalY = (/*abs(*/ data[1][1] - data[0][1]) / (this->ny - 1);
-	//i dont think using abs is a good idea: we would lose the way have have incorrect data, but i struggle to exactly explain why
+	this->intervalX =(/* abs(*/ this->box[1][0] - this->box[0][0]) / (this->nx - 1);
+	this->intervalY = (/*abs(*/ this->box[1][1] - this->box[0][1]) / (this->ny - 1);
+	//i dont think using abs is a good idea: we would lose the way and have incorrect data, but i struggle to exactly explain why
 
 	int position;
 	for (int x = 0; x < this->nx; x++) {
 
 		for (int y = 0; y < this->ny; y++) {
 			position = getIndex(x, y);
-			this->vecField[position] = Vector(this->intervalX * x + data[0][0], this->intervalY * y + data[0][1], 0);
+			this->vecField[position] = Vector(this->intervalX * x + this->box[0][0], this->intervalY * y + this->box[0][1], 0);
 			//i add the length to the starting point from data[0], so it includeds every possibility and is clean
 			this->heightVector[position] = 0;//here we fill it separately
 		}
 	}
 	//box stay almost untouched
-	this->box = data;
-
-
+	
 }
 
 
 float ScalarField::getHeight(int x, int y) {
 	//gives height of the point in x y, stored in heightVector
 	int index = getIndex(x, y);
+	return this->heightVector[index];
+}
+
+float ScalarField::getHeight(int index) {
+	//gives height of the point in x y, stored in heightVector
 	return this->heightVector[index];
 }
 
@@ -70,15 +73,22 @@ Vector ScalarField::gradient(int x, int y) {
 		succYId = getIndex(x, y + 1);
 	}
 	/*
-	*garder en commentaire l'ancienne version au cas où
-	*double gradX = (heightVector[succXId] - heightVector[prevXId]) / (2 * box[ny][0]);	
-	*double gradY = (heightVector[succYId] - heightVector[prevYId]) / (2 * box[1][1]);
-	*double fullGrad = gradX / gradY;*/
-
+	*gradient missunderstood
+	*double gradX = (heightVector[succXId] - heightVector[prevXId]) / (2 * intervalX);	
+	*double gradY = (heightVector[succYId] - heightVector[prevYId]) / (2 * intervalY);
+	*double fullGrad = gradX / gradY;
+	*/
+	/*
+	* average
 	//it should return the average of the height from the 4 neighbors points
 	double fullGrad = (this->heightVector[prevXId] + this->heightVector[prevYId] + this->heightVector[succXId] + this->heightVector[succYId])/4;
-	
 	return Vector(fullGrad);
+	*/
+
+	//Vec2 G= Vec2 ( H(i+1,j)-H(i-1,j), H(i,j+1)-H(i,j-1) );
+	//remplacer par getHeight
+	Vector G= Vector ( getHeight(succXId)- getHeight(prevXId), getHeight(succYId)- getHeight(prevYId), 0 );
+	return G;
 }
 
 float ScalarField::slope(int x, int y) {
