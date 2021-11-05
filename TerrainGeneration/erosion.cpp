@@ -9,6 +9,8 @@ Erosion::Erosion(int nbdrop, ScalarField terrain) {
 	this->workTerrain = terrain;
 	this->maxAbsorption = 0.5;//this two parameters
 	this->amountAbsorption = 0.1;// will have to be settable in the future
+	//to do: add a max height to scalarfield so we can take a small portion of this for erosion, like 0.5%
+	this->speed = 0;//dummy values are applied to it for the moment
 
 
 	for (int i = 0; i < this->qtyDroplet; i++) {
@@ -21,13 +23,14 @@ Erosion::Erosion(int nbdrop, ScalarField terrain) {
 ScalarField Erosion::applyDroplet(ScalarField terrain) {
 	this->speed = 0;
 	this->absorption = 0;
+	int prevDir = rand()%4;// to avoid errors, ask matheo if it excludes 0 from the possible answers, if not then %3+1 is the answer
 	//getting the starting point
 	int  x, y;
 	x = rand()%terrain.ni;
 	y = rand()%terrain.nj;
 	bool followup = true;
 	while (followup) {
-		int dir = getDirection(terrain, x, y);
+		int dir = getDirection(terrain, x, y, prevDir);
 		if (dir == 0) {
 			//we reached the bottomest point possible
 			followup = false;
@@ -38,6 +41,15 @@ ScalarField Erosion::applyDroplet(ScalarField terrain) {
 			if (this->absorption < this->maxAbsorption) {
 				this->absorption = this->absorption + this->amountAbsorption;
 				terrain.setHeight(x, y, -amountAbsorption);//no fear of going under 0, since the min always get a positive value, minus is applied only on something superior to min
+			}
+
+			if (prevDir == dir) {
+				this->speed = this->speed + 1;
+
+			}
+			else {
+				this->speed = 1;
+				prevDir = dir;
 			}
 			//we get next analyzed point, which will never be out of scope
 			switch(dir){
@@ -57,15 +69,11 @@ ScalarField Erosion::applyDroplet(ScalarField terrain) {
 	
 
 
-
-
-
-
 	return terrain;
 
 }
 
-int Erosion::getDirection(ScalarField terrain, int x, int y) {
+int Erosion::getDirection(ScalarField terrain, int x, int y, int prevDir) {
 	int currentHeight = terrain.getHeight(x, y);
 	int north, east, south, west;
 	if (x == 0) {
@@ -96,24 +104,65 @@ int Erosion::getDirection(ScalarField terrain, int x, int y) {
 	int indicator = *min_element(list1.begin(), list1.end());
 	if (currentHeight == indicator){
 		// i do this test first to cover evey case at border of terrain, because this way we are sure to not have any error
-		// i am sure we never reach out of scope state thanks to that
+		// i am sure we never reach out of scope state thanks to that1
+		//we basically rerach the pit when returning 0
 		return 0;
 
 	}
 	else {
-		// for now, in case of equality, the following order is chosen: north, east, south, west, probably need a rework later
+		// in case of equality, then the droplet goes into the same direction as the previous direction, emulating speed
 		if (north == indicator) {
-			return 1;
-
+			if (north != east && north != south && north != west || prevDir == 1) {
+				return 1;
+			}
+			else {
+				if (north == east && prevDir == 2) {
+					return 2;
+				}
+				else {
+					if (north == south && prevDir == 3) {
+						return 3;
+					}
+					else {
+						if (north == west && prevDir == 4) {
+							return 4;
+							// last if trivial, but i prefer to be sure
+						}
+					}
+				}
+			}
 		}
 		else {
 			if (east == indicator) {
-				return 2;
+				if (east != south && east != west || prevDir == 2) {
+					return 2;
+				}
+				else {
+					if (east == south && prevDir == 3) {
+						return 3;
+
+					}
+					else {
+						if (east == west && prevDir == 4) {
+							return 4;
+							// last if trivial, but i prefer to be sure
+						}
+					}
+				}
+				
 
 			}
 			else {
 				if (south == indicator) {
-					return 3;
+					if (south!=west || prevDir==3) {
+						return 3;
+					}
+					else {
+						if (south == west && prevDir == 4) {
+							return 4;
+						}
+					}
+						
 
 				}
 				else {
