@@ -21,7 +21,7 @@ public:
 	ScalarField();
 	ScalarField(Box data, int nbX, int nbY);
 
-	void setHeight(int i, int j, float val);
+	void addHeight(int i, int j, float val);
 	float getHeight(int i, int j);//the method val() 
 	float getHeight(int index);
 	float slope(int i, int j);

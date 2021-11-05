@@ -1,8 +1,11 @@
-#include "scalar-field.h"
-
+#pragma once
+#ifndef __Erosion__
+#define __Erosion__
+#include "terrain.h"
 
 #pragma once
-class Erosion{
+class Erosion : public Terrain
+{
 
 
 
@@ -15,9 +18,9 @@ private:
 public:
 
 	Erosion();
-	Erosion(int nbdrop, ScalarField terrain);
-	ScalarField applyDroplet(ScalarField terrain);
-	int getDirection(ScalarField terrain, int x, int y, int prevDir);
+	Erosion(Terrain t ,int nbdrop);
+	void applyDroplet();
+	int getDirection( int x, int y, int prevDir);
 
 
 
@@ -25,4 +28,5 @@ public:
 
 
 };
+#endif
 
