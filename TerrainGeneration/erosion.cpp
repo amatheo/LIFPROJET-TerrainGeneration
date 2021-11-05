@@ -4,7 +4,7 @@
 Erosion::Erosion() {
 }
 
-Erosion::Erosion(Terrain t, int nbdrop){
+Erosion::Erosion(Terrain t, int nbdrop):Terrain(t.heightmap, this->getBox(), this->za, this->zb){
 	this->qtyDroplet = nbdrop;
 	this->maxAbsorption = 0.5;//this two parameters
 	this->amountAbsorption = 0.01;// will have to be settable in the future

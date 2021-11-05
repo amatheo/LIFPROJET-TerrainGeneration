@@ -27,6 +27,10 @@ ScalarField::ScalarField(Box data, int nbX, int nbY) {
 		}
 	}
 }
+Box ScalarField::getBox()
+{
+	return this->box;
+}
 void ScalarField::addHeight(int i, int j, float val) {
 	int index = getIndex(i, j);
 	this->heightVector[index] = this->heightVector[index]+val;
