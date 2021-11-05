@@ -27,7 +27,10 @@ ScalarField::ScalarField(Box data, int nbX, int nbY) {
 		}
 	}
 }
-
+void ScalarField::setHeight(int i, int j, float val) {
+	int index = getIndex(i, j);
+	this->heightVector[index] = val;
+}
 
 float ScalarField::getHeight(int i, int j) {
 	//gives height of the point in x y, stored in heightVector
