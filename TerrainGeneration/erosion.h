@@ -19,7 +19,9 @@ public:
 
 	Erosion();
 	Erosion(Terrain t ,int nbdrop);
-	void applyDroplet();
+	void applyErosion();
+	void setAbsorption(float max, float amount);
+	void applyDroplet(int nbdrop);
 	int getDirection( int x, int y, int prevDir);
 
 

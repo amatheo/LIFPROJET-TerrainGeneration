@@ -6,11 +6,9 @@ Erosion::Erosion() {
 
 Erosion::Erosion(Terrain t, int nbdrop):Terrain(t.heightmap, this->getBox(), this->za, this->zb){
 	this->qtyDroplet = nbdrop;
-	this->maxAbsorption = 0.5;//this two parameters
-	this->amountAbsorption = 0.01;// will have to be settable in the future
-	//to do: add a max height to scalarfield so we can take a small portion of this for erosion, like 0.5%
-	this->speed = 0;//dummy values are applied to it for the moment
-	applyDroplet();
+	this->amountAbsorption = getMaxHeight()*0.05;
+	this->maxAbsorption = this->amountAbsorption*10;
+	this->speed = 0;//dummy values are applied for the moment
 	//herites de terrain
 	//extend pour l'heritage
 	//plus de workTerrain, adapter le constructeur
@@ -19,15 +17,26 @@ Erosion::Erosion(Terrain t, int nbdrop):Terrain(t.heightmap, this->getBox(), thi
 	//nombre de droplet a set quand lors du run avec les paramètres sur les gouttes
 	//objet erosion mais aussi à coté fonction erosion qui l'applique sur chaque terrain
 	//erosion doit être un héritage pour garder les données et pouvoir y accéder
-	//créer un erosion en transformant le type de terrain
+}
+
+
+
+void Erosion::applyErosion() {
+	applyDroplet();
+
+}
+void Erosion::setAbsorption( float max, float amount) {
+	this->maxAbsorption = max;
+	this->amountAbsorption = amount;
 
 }
 
-void Erosion::applyDroplet() {
-	for (int i=0; i < this->qtyDroplet; i++) {
-		this->speed = 0;
+
+void Erosion::applyDroplet(int nbdrop=100) {
+	for (int i=0; i < nbdrop; i++) {
+		this->speed = 0;//dummy stat for now
 		this->absorption = 0;
-		int prevDir = rand() % 4;// to avoid errors, ask matheo if it excludes 0 from the possible answers, if not then %3+1 is the answer
+		int prevDir = rand() % 3+1;
 		//getting the starting point
 		int  x, y;
 		x = rand() % this->ni;
@@ -38,7 +47,7 @@ void Erosion::applyDroplet() {
 			if (dir == 0) {
 				//we reached the bottomest point possible
 				followup = false;
-				addHeight(x, y, this->absorption);//rename en setHeight
+				addHeight(x, y, this->absorption);
 			}
 			else {
 				//absorb a part of the height into the droplet
@@ -99,10 +108,10 @@ int Erosion::getDirection( int x, int y, int prevDir) {
 		south = getHeight(x, y + 1);
 	}
 	vector<int> list1{ currentHeight, north, east, south, west };
-	int minIdicator = *min_element(list1.begin(), list1.end());
+	int minIndicator = *min_element(list1.begin(), list1.end());
 	if (currentHeight == minIndicator){
 		// i do this test first to cover evey case at border of terrain, because this way we are sure to not have any error
-		// i am sure we never reach out of scope state thanks to that1
+		// i am sure we never reach out of scope state thanks to that
 		//we basically reach the pit when returning 0
 		return 0;
 	}
@@ -159,7 +168,7 @@ int Erosion::getDirection( int x, int y, int prevDir) {
 				}
 				else {
 					if (west == minIndicator) {
-						//this last if is trivial, but i prefer to show it to be clearer when reading
+						//this last if is trivial, but i prefer to show it for clarity when reading
 						return 4;
 					}
 				}

@@ -46,6 +46,16 @@ float ScalarField::getHeight(int index) {
 	//gives height of the point in x y, stored in heightVector
 	return this->heightVector[index];
 }
+float ScalarField::getMaxHeight() {
+	float max = 0;
+	int size = this->ni * this->nj;
+	for (int i = 0; i < size; i++) {
+		if (this->heightVector[i] > max) {
+			max = i;
+		}
+	}
+	return this->heightVector[max];
+}
 
 Vector ScalarField::gradient(int i, int j) {
 	//the 4 points surrounding the original point
@@ -104,7 +114,7 @@ float ScalarField::slope(int i, int j) {
 }
 
 int ScalarField::getIndex(int i, int j) {
-	//since vecFGield and heightVectore are one dimensionnal, we need to calculate where the data for the point in x y is stored
+	//since vectorField and heightVector are one dimensionnal, we need to calculate where the data for the point in x y is stored
 	return (i * nj) + j;
 }
 

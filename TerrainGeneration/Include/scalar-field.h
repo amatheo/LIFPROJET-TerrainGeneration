@@ -24,6 +24,7 @@ public:
 	void addHeight(int i, int j, float val);
 	float getHeight(int i, int j);//the method val() 
 	float getHeight(int index);
+	float getMaxHeight();
 	float slope(int i, int j);
 	Vector gradient(int i, int j);
 	int getIndex(int i, int j);
