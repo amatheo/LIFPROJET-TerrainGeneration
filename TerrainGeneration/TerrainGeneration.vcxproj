@@ -101,6 +101,8 @@
   <ItemGroup>
     <ClCompile Include="Source\box.cpp" />
     <ClCompile Include="Source\camera.cpp" />
+    <ClCompile Include="Source\erosion-parameter.cpp" />
+    <ClCompile Include="Source\erosion.cpp" />
     <ClCompile Include="Source\evector.cpp" />
     <ClCompile Include="Source\main.cpp" />
     <ClCompile Include="Source\mesh-widget.cpp" />
@@ -158,6 +160,8 @@
     <ClInclude Include="Include\box.h" />
     <ClInclude Include="Include\camera.h" />
     <ClInclude Include="Include\color.h" />
+    <ClInclude Include="Include\erosion-parameter.h" />
+    <ClInclude Include="Include\erosion.h" />
     <ClInclude Include="Include\evector.h" />
     <ClInclude Include="Include\scalar-field.h" />
     <ClInclude Include="Include\mathematics.h" />

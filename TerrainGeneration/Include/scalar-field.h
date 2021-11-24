@@ -20,12 +20,17 @@ public:
 
 	ScalarField();
 	ScalarField(Box data, int nbX, int nbY);
-	
+
+	void setHeight(int i, int j, float val);
+	void addHeight(int i, int j, float val);
+	void addHeight(int index, float val);
+
 	float getHeight(int i, int j);//the method val() 
 	float getHeight(int index);
 	float slope(int i, int j);
-	Vector gradient(int i, int j);
+	Vector gradient(float posX, float posY);
 	int getIndex(int i, int j);
+	static Vector getCoord(int nj, int index);
 	Vector get2dPoint(int i, int j); // Z will always be 0
 protected:
 	VectorField vecField;

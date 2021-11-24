@@ -18,7 +18,6 @@ public:
 	
 	Vector getPoint(int i, int j);
 	Vector getNormal(int i, int j);
-	ScalarField Slope;
 	Mesh toMesh();
 	~Terrain();
 };

@@ -23,10 +23,28 @@ ScalarField::ScalarField(Box data, int nbX, int nbY) {
 			position = getIndex(x, y);
 			this->vecField.v.push_back(Vector(this->intervalX * x + this->box[0][0], this->intervalY * y + this->box[0][1], 0));
 			//i add the length to the starting point from data[0], so it includeds every possibility and is clean
-			this->heightVector.push_back(0);//here we fill it separately
+			float r2 = static_cast <float> (rand()) / (static_cast <float> (RAND_MAX / 2.0f));
+			this->heightVector.push_back(r2);//here we fill it separately
 		}
 	}
 }
+
+void ScalarField::setHeight(int i, int j, float val) {
+	int index = getIndex(i, j);
+	this->heightVector[index] = val;
+}
+
+void ScalarField::addHeight(int i, int j, float val) {
+	int index = getIndex(i, j);
+	this->heightVector[index] += val;
+}
+
+void ScalarField::addHeight(int index, float val)
+{
+	this->heightVector[index] += val;
+}
+
+
 
 
 float ScalarField::getHeight(int i, int j) {
@@ -40,54 +58,33 @@ float ScalarField::getHeight(int index) {
 	return this->heightVector[index];
 }
 
-Vector ScalarField::gradient(int i, int j) {
-	//the 4 points surrounding the original point
-	int prevXId;
-	int prevYId;
-	int succXId;
-	int succYId;
-	// covering case of calculating at borders
-	if (i == 0) {
-		prevXId = getIndex(i, j);
-	}
-	else {
-		prevXId = getIndex(i - 1, j);
-	}
-	if (i == ni) {
-		succXId = getIndex(i, j);
-	}
-	else {
-		succXId = getIndex(i + 1, j);
-	}
-	if (j == 0) {
-		prevYId = getIndex(i, j);
-	}
-	else {
-		prevYId = getIndex(i, j - 1);
-	}
-	if (j == nj) {
-		succYId = getIndex(i, j);
-	}
-	else {
-		succYId = getIndex(i, j + 1);
-	}
-	/*
-	*gradient missunderstood
-	*double gradX = (heightVector[succXId] - heightVector[prevXId]) / (2 * intervalX);	
-	*double gradY = (heightVector[succYId] - heightVector[prevYId]) / (2 * intervalY);
-	*double fullGrad = gradX / gradY;
-	*/
-	/*
-	* average
-	//it should return the average of the height from the 4 neighbors points
-	double fullGrad = (this->heightVector[prevXId] + this->heightVector[prevYId] + this->heightVector[succXId] + this->heightVector[succYId])/4;
-	return Vector(fullGrad);
-	*/
 
-	//Vec2 G= Vec2 ( H(i+1,j)-H(i-1,j), H(i,j+1)-H(i,j-1) );
-	//remplacer par getHeight
-	Vector G= Vector ( getHeight(succXId)- getHeight(prevXId), getHeight(succYId)- getHeight(prevYId), 0 );
-	return G;
+Vector ScalarField::gradient(float posX, float posY)
+{
+	int coordX = (int)posX;
+	int coordY = (int)posY;
+
+	// Calculate droplet's offset inside the cell (0,0) = at NW node, (1,1) = at SE node
+	float x = posX - coordX;
+	float y = posY - coordY;
+
+	//the 4 points surrounding the original point
+	int indexNW = getIndex(coordX, coordY);
+	int indexNE = getIndex(coordX+1, coordY);
+	int indexSW = getIndex(coordX, coordY+1);
+	int indexSE = getIndex(coordX+1, coordY+1);
+	
+	float heightNW = getHeight(indexNW);
+	float heightNE = getHeight(indexNE);
+	float heightSW = getHeight(indexSW);
+	float heightSE = getHeight(indexSE);
+	
+	float gradientX = (heightNE - heightNW) * (1 - y) + (heightSE - heightSW) * y;
+	float gradientY = (heightSW - heightNW) * (1 - x) + (heightSE - heightNE) * x;
+
+	float height = heightNW * (1 - x) * (1 - y) + heightNE * x * (1 - y) + heightSW * (1 - x) * y + heightSE * x * y;
+	
+	return Vector(gradientX,gradientY, height);
 }
 
 float ScalarField::slope(int i, int j) {
@@ -99,6 +96,13 @@ float ScalarField::slope(int i, int j) {
 int ScalarField::getIndex(int i, int j) {
 	//since vecFGield and heightVectore are one dimensionnal, we need to calculate where the data for the point in x y is stored
 	return (i * nj) + j;
+}
+
+Vector ScalarField::getCoord(int nj, int index)
+{
+	int x = index / nj;
+	int y = index % nj;
+	return Vector(x,y,0);
 }
 
 Vector ScalarField::get2dPoint(int i, int j)
