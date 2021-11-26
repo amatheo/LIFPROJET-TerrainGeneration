@@ -184,23 +184,8 @@ vector<int> Erosion::getTreeList() {
 	for (int i = 0; i < size; i++) {
 		if (checkTree(i)) {
 			levelTree.push_back(1);
-			//check of neighbor just above
-			//ofc we wont change anything if current point is upmost
-			if ((i % this->nj) != 0) {
-				int tempPos = i-1;
-				if (levelTree[tempPos]) {
-					levelTree[tempPos] = levelTree[tempPos] + 1;
-				}
-			}
-			//check of neighbor just left
-			//ofc we wont change anything if current point is leftmost
-			if (((i - (i % this->nj)) / this->nj) != 0) {
-				int tempPos = i - this->nj;
-				if (levelTree[tempPos]) {
-					levelTree[tempPos] = levelTree[tempPos] + 1;
-				}
-			}
-
+		
+		//this is actually very dumb and will be changed very soon
 		//why changing only previous on left and above? because we start from top left, so everything is added from this point, we cant know yet if there is a tree at right and under
 		}
 		else {
@@ -208,7 +193,48 @@ vector<int> Erosion::getTreeList() {
 			levelTree.push_back(0);
 		}
 	}
-	return levelTree;
+	//it should have the same size as heightVector for manipulation
+	vector<int> trueLevelTree;
+	for (int i = 0; i < levelTree.size(); i++) {
+		int xPos = (i - (i % this->nj)) / this->nj;
+		int yPos = (i % this->nj);
+		//the 4 points surrounding the original point
+		//copypasted from gradient, might need a func
+		int prevXId;
+		int prevYId;
+		int succXId;
+		int succYId;
+		// covering case of calculating at borders
+		if (xPos == 0) {
+			prevXId = getIndex(xPos, yPos);
+		}
+		else {
+			prevXId = getIndex(xPos - 1, yPos);
+		}
+		if (xPos == ni) {
+			succXId = getIndex(xPos, yPos);
+		}
+		else {
+			succXId = getIndex(xPos + 1, yPos);
+		}
+		if (yPos == 0) {
+			prevYId = getIndex(xPos, yPos);
+		}
+		else {
+			prevYId = getIndex(xPos, yPos - 1);
+		}
+		if (yPos == nj) {
+			succYId = getIndex(xPos, yPos);
+		}
+		else {
+			succYId = getIndex(xPos, yPos + 1);
+		}
+		//the more surrounded of trees it is, the taller it is
+		trueLevelTree.push_back(levelTree[prevXId]+ levelTree[succXId]+ levelTree[prevYId]+ levelTree[succYId]+ levelTree[i]);
+
+	}
+
+	return trueLevelTree;
 }
 bool Erosion::checkTree(int i) {
 	int xPos = (i-(i%this->nj))/this->nj;
