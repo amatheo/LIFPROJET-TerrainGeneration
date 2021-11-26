@@ -1,5 +1,5 @@
 #include "erosion.h"
-
+#include <vector>
 
 Erosion::Erosion() {
 }
@@ -177,3 +177,84 @@ int Erosion::getDirection( int x, int y, int prevDir) {
 	}
 
 }
+
+
+vector<int> Erosion::getTreeList() {
+	int size = getSize();
+	//vector<float> treeHeight; useless data, might be used one day, but for now heightVector is enough
+	vector<int> levelTree;
+	for (int i = 0; i < size; i++) {
+		if (checkTree(i)) {
+			levelTree.push_back(1);
+			//check of neighbor just above
+			//ofc we wont change anything if current point is upmost
+			if ((i % this->nj) != 0) {
+				int tempPos = i-1;
+				if (levelTree[tempPos]) {
+					levelTree[tempPos] = levelTree[tempPos] + 1;
+				}
+			}
+			//check of neighbor just left
+			//ofc we wont change anything if current point is leftmost
+			if (((i - (i % this->nj)) / this->nj) != 0) {
+				int tempPos = i - this->nj;
+				if (levelTree[tempPos]) {
+					levelTree[tempPos] = levelTree[tempPos] + 1;
+				}
+			}
+
+		//why changing only previous on left and above? because we start from top left, so everything is added from this point
+		}
+		else {
+			//no tree
+			levelTree.push_back(0);
+		}
+	}
+	return levelTree;
+}
+bool Erosion::checkTree(int i) {
+	int xPos = (i-(i%this->nj))/this->nj;
+	int yPos = (i % this->nj);
+	//the 4 points surrounding the original point
+	//copypasted from gradient, might need a func
+	int prevXId;
+	int prevYId;
+	int succXId;
+	int succYId;
+	// covering case of calculating at borders
+	if (xPos == 0) {
+		prevXId = getIndex(xPos, yPos);
+	}
+	else {
+		prevXId = getIndex(xPos-1, yPos);
+	}
+	if (xPos == ni) {
+		succXId = getIndex(xPos, yPos);
+	}
+	else {
+		succXId = getIndex(xPos+1, yPos);
+	}
+	if (yPos == 0) {
+		prevYId = getIndex(xPos, yPos);
+	}
+	else {
+		prevYId = getIndex(xPos, yPos-1);
+	}
+	if (yPos == nj) {
+		succYId = getIndex(xPos, yPos);
+	}
+	else {
+		succYId = getIndex(xPos, yPos+1);
+	}
+	//if height equal eveywhere then the area is flat and a tree can appear
+	if (getHeight(prevXId) == getHeight(succXId) == getHeight(prevYId) == getHeight(succYId) == getHeight(xPos, yPos) ){
+		return true;
+		// the position is good for a tree
+	}
+	return false;
+	//check voisins sup en xy et voisin inf en x y
+	//si tous à même hauteur alors arbre plantable
+}
+
+
+
