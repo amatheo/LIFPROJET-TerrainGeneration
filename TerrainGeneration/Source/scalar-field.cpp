@@ -22,7 +22,7 @@ ScalarField::ScalarField(Box data, int nbX, int nbY) {
 			int position;
 			position = getIndex(x, y);
 			this->vecField.v.push_back(Vector(this->intervalX * x + this->box[0][0], this->intervalY * y + this->box[0][1], 0));
-			//i add the length to the starting point from data[0], so it includeds every possibility and is clean
+			//i add the length to the starting point from data[0], so it includes every possibility and is clean
 			this->heightVector.push_back(0);//here we fill it separately
 		}
 	}

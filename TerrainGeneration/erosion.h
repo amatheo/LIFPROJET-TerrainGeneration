@@ -3,6 +3,7 @@
 #define __Erosion__
 #include "terrain.h"
 
+
 #pragma once
 class Erosion : public Terrain
 {
@@ -23,9 +24,9 @@ public:
 	void setAbsorption(float max, float amount);
 	void applyDroplet(int nbdrop);
 	int getDirection( int x, int y, int prevDir);
-	void getTreeList();
-	bool checkTree();
-	void placeTree();
+	vector<int> getTreeList();
+	bool checkTree(int i);
+
 
 
 

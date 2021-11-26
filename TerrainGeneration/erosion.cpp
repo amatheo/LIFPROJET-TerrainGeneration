@@ -13,10 +13,8 @@ Erosion::Erosion(Terrain t, int nbdrop):Terrain(t.heightmap, this->getBox(), thi
 	//extend pour l'heritage
 	//plus de workTerrain, adapter le constructeur
 	//travailler sur terrain avec terrain.methode()
-	//getHeight(1, 2);
 	//nombre de droplet a set quand lors du run avec les paramètres sur les gouttes
 	//objet erosion mais aussi à coté fonction erosion qui l'applique sur chaque terrain
-	//erosion doit être un héritage pour garder les données et pouvoir y accéder
 }
 
 
@@ -203,7 +201,7 @@ vector<int> Erosion::getTreeList() {
 				}
 			}
 
-		//why changing only previous on left and above? because we start from top left, so everything is added from this point
+		//why changing only previous on left and above? because we start from top left, so everything is added from this point, we cant know yet if there is a tree at right and under
 		}
 		else {
 			//no tree
@@ -252,8 +250,7 @@ bool Erosion::checkTree(int i) {
 		// the position is good for a tree
 	}
 	return false;
-	//check voisins sup en xy et voisin inf en x y
-	//si tous à même hauteur alors arbre plantable
+
 }
 
 
