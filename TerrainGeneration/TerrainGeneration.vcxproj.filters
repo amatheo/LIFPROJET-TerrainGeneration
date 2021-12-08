@@ -47,7 +47,12 @@
     <ClCompile Include="Source\realtime-moc.cpp">
       <Filter>Interface</Filter>
     </ClCompile>
-    <ClCompile Include="erosion.cpp">
+
+    <ClCompile Include="Source\erosion-parameter.cpp">
+      <Filter>Source\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\erosion.cpp">
+
       <Filter>Source\Core</Filter>
     </ClCompile>
   </ItemGroup>
@@ -120,7 +125,10 @@
     <ClInclude Include="Include\vectorfield.h">
       <Filter>Include</Filter>
     </ClInclude>
-    <ClInclude Include="erosion.h">
+    <ClInclude Include="Include\erosion-parameter.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\erosion.h">
       <Filter>Include</Filter>
     </ClInclude>
   </ItemGroup>

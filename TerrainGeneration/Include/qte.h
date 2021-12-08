@@ -4,6 +4,7 @@
 #include "ui-interface.h"
 #include "realtime.h"
 #include "meshcolor.h"
+#include "terrain.h"
 
 class MainWindow : public QMainWindow
 {
@@ -14,6 +15,7 @@ private:
 	MeshWidget* meshWidget;		//!< Viewer
 	MeshColor meshColor;		//!< Mesh.
 	QString imagePath;
+	Terrain currentTerrain;
 
 public:
 	MainWindow();
@@ -29,6 +31,8 @@ public slots:
 	void UpdateMaterial();
 	void ChangeCameraProjection();
 	void GeneratePlaneMesh();
+	void StartErosion();
+	void UpdateTerrain();
 };
 
 #endif

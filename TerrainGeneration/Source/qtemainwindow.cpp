@@ -3,6 +3,7 @@
 
 #include <QtWidgets/qfiledialog.h>
 #include "terrain.h"
+#include <erosion.h>
 
 MainWindow::MainWindow()
 {
@@ -35,6 +36,7 @@ void MainWindow::CreateActions()
 	connect(uiw.wireframe, SIGNAL(clicked()), this, SLOT(UpdateMaterial()));
 	connect(uiw.orthographic_mode, SIGNAL(clicked()), this, SLOT(ChangeCameraProjection()));
 	connect(uiw.terrainMeshButton, SIGNAL(clicked()), this, SLOT(GeneratePlaneMesh()));
+	connect(uiw.erodeButton, SIGNAL(clicked()), this, SLOT(StartErosion()));
 
 	// Widget edition
 	connect(meshWidget, SIGNAL(_signalEditSceneLeft(const Ray&)), this, SLOT(editingSceneLeft(const Ray&)));
@@ -85,10 +87,10 @@ void MainWindow::GeneratePlaneMesh() {
 
 	QImage image = QImage();
 
-	Box b = Box(Vector(2, 5, 0), Vector(10, 3, 0));
-	Terrain terrain(image, b, 10, 0);
+	Box b = Box(Vector(0, 0, 0), Vector(25, 25, 0));
+	currentTerrain = Terrain(image, b, 10, 0);
 
-	meshColor = MeshColor(terrain.toMesh());
+	meshColor = MeshColor(currentTerrain.toMesh());
 
 	meshWidget->ClearAll();
 	meshWidget->AddMesh("TerrainMesh", meshColor);
@@ -96,5 +98,27 @@ void MainWindow::GeneratePlaneMesh() {
 	uiw.lineEdit->setText(QString::number(meshColor.Vertexes()));
 	uiw.lineEdit_2->setText(QString::number(meshColor.Triangles()));
 
+	UpdateMaterial();
+}
+
+void MainWindow::StartErosion()
+{
+	ErosionParameter param = ErosionParameter();
+	currentTerrain = Erosion::ErodeTerrain(10000, currentTerrain, param);
+	meshColor = MeshColor(currentTerrain.toMesh());
+	meshWidget->ClearAll();
+	meshWidget->AddMesh("TerrainMesh", meshColor);
+
+	uiw.lineEdit->setText(QString::number(meshColor.Vertexes()));
+	uiw.lineEdit_2->setText(QString::number(meshColor.Triangles()));
+
+	UpdateMaterial();
+}
+
+void MainWindow::UpdateTerrain()
+{
+	meshWidget->DeleteMesh("TerrainMesh");
+	meshColor = MeshColor(currentTerrain.toMesh());
+	meshWidget->AddMesh("TerrainMesh", meshColor);
 	UpdateMaterial();
 }

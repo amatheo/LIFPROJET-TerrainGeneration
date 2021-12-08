@@ -57,6 +57,8 @@ public:
     QGroupBox *CameraBox;
     QCheckBox *orthographic_mode;
     QPushButton *resetcameraButton;
+    QGroupBox *groupBox_5;
+    QPushButton *erodeButton;
     QMenuBar *menubar;
     QMenu *menuFile;
 
@@ -171,6 +173,12 @@ public:
         resetcameraButton->setCheckable(true);
         resetcameraButton->setAutoDefault(false);
         resetcameraButton->setFlat(false);
+        groupBox_5 = new QGroupBox(Parameters_groupBox);
+        groupBox_5->setObjectName(QString::fromUtf8("groupBox_5"));
+        groupBox_5->setGeometry(QRect(190, 210, 251, 181));
+        erodeButton = new QPushButton(groupBox_5);
+        erodeButton->setObjectName(QString::fromUtf8("erodeButton"));
+        erodeButton->setGeometry(QRect(10, 60, 75, 23));
 
         hboxLayout->addWidget(Parameters_groupBox);
 
@@ -241,6 +249,8 @@ public:
         resetcameraButton->setToolTip(QCoreApplication::translate("Assets", "<html><head/><body><p><span style=\" color:#5500ff;\">Callback #03</span></p><p><span style=\" font-style:italic; color:#aa00ff;\">Create Eurographics 1996 Bird</span></p></body></html>", nullptr));
 #endif // QT_CONFIG(tooltip)
         resetcameraButton->setText(QCoreApplication::translate("Assets", "Reset Camera", nullptr));
+        groupBox_5->setTitle(QCoreApplication::translate("Assets", "Operation", nullptr));
+        erodeButton->setText(QCoreApplication::translate("Assets", "Start Erosion", nullptr));
         menuFile->setTitle(QCoreApplication::translate("Assets", "File", nullptr));
     } // retranslateUi
 

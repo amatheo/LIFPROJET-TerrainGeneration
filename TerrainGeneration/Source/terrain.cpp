@@ -1,7 +1,7 @@
 #include "terrain.h"
 #include <QtGui/QImage>
 
-Terrain::Terrain(QImage image, Box box, int za, int zb):ScalarField(box, 25, 25)
+Terrain::Terrain(QImage image, Box box, int za, int zb):ScalarField(box, 50, 50)
 {
 }
 
