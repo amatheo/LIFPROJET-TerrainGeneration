@@ -59,6 +59,7 @@ public:
     QPushButton *resetcameraButton;
     QGroupBox *groupBox_5;
     QPushButton *erodeButton;
+    QPushButton *spawnTreeButton;
     QMenuBar *menubar;
     QMenu *menuFile;
 
@@ -66,7 +67,7 @@ public:
     {
         if (Assets->objectName().isEmpty())
             Assets->setObjectName(QString::fromUtf8("Assets"));
-        Assets->resize(1193, 1000);
+        Assets->resize(1192, 1000);
         Assets->setMinimumSize(QSize(420, 300));
         actionExit = new QAction(Assets);
         actionExit->setObjectName(QString::fromUtf8("actionExit"));
@@ -179,13 +180,16 @@ public:
         erodeButton = new QPushButton(groupBox_5);
         erodeButton->setObjectName(QString::fromUtf8("erodeButton"));
         erodeButton->setGeometry(QRect(10, 60, 75, 23));
+        spawnTreeButton = new QPushButton(groupBox_5);
+        spawnTreeButton->setObjectName(QString::fromUtf8("spawnTreeButton"));
+        spawnTreeButton->setGeometry(QRect(10, 120, 75, 23));
 
         hboxLayout->addWidget(Parameters_groupBox);
 
         Assets->setCentralWidget(centralwidget);
         menubar = new QMenuBar(Assets);
         menubar->setObjectName(QString::fromUtf8("menubar"));
-        menubar->setGeometry(QRect(0, 0, 1193, 21));
+        menubar->setGeometry(QRect(0, 0, 1192, 21));
         menuFile = new QMenu(menubar);
         menuFile->setObjectName(QString::fromUtf8("menuFile"));
         Assets->setMenuBar(menubar);
@@ -251,6 +255,7 @@ public:
         resetcameraButton->setText(QCoreApplication::translate("Assets", "Reset Camera", nullptr));
         groupBox_5->setTitle(QCoreApplication::translate("Assets", "Operation", nullptr));
         erodeButton->setText(QCoreApplication::translate("Assets", "Start Erosion", nullptr));
+        spawnTreeButton->setText(QCoreApplication::translate("Assets", "SpawnTree", nullptr));
         menuFile->setTitle(QCoreApplication::translate("Assets", "File", nullptr));
     } // retranslateUi
 

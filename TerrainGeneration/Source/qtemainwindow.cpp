@@ -37,6 +37,8 @@ void MainWindow::CreateActions()
 	connect(uiw.orthographic_mode, SIGNAL(clicked()), this, SLOT(ChangeCameraProjection()));
 	connect(uiw.terrainMeshButton, SIGNAL(clicked()), this, SLOT(GeneratePlaneMesh()));
 	connect(uiw.erodeButton, SIGNAL(clicked()), this, SLOT(StartErosion()));
+	connect(uiw.spawnTreeButton, SIGNAL(clicked()), this, SLOT(SpawnTree()));
+
 
 	// Widget edition
 	connect(meshWidget, SIGNAL(_signalEditSceneLeft(const Ray&)), this, SLOT(editingSceneLeft(const Ray&)));
@@ -120,5 +122,15 @@ void MainWindow::UpdateTerrain()
 	meshWidget->DeleteMesh("TerrainMesh");
 	meshColor = MeshColor(currentTerrain.toMesh());
 	meshWidget->AddMesh("TerrainMesh", meshColor);
+	UpdateMaterial();
+}
+
+void MainWindow::SpawnTree()
+{
+	//remplir moi même
+	//créer un mesh
+	//charger fichier .obj pour l'arbre mesh load
+	//meshcolor pour créer l'objet, meshwidget->addMesh pour l'ajouter
+
 	UpdateMaterial();
 }
