@@ -3,6 +3,7 @@
 using namespace std;
 Terrain Erosion::ErodeTerrain(int numIteration, Terrain terrain, ErosionParameter parameter)
 {
+	srand(time(NULL));
 	////////Initialize Brushweight
 	vector<vector<int>> erosionBrushIndices = vector<vector<int>>(terrain.ni * terrain.nj);
 	vector<vector<float>> erosionBrushWeights = vector<vector<float>>(terrain.ni * terrain.nj);
@@ -48,7 +49,7 @@ Terrain Erosion::ErodeTerrain(int numIteration, Terrain terrain, ErosionParamete
 		erosionBrushWeights[i] = vector<float>(numEntries);
 
 		for (int j = 0; j < numEntries; j++) {
-			erosionBrushIndices[i][j] = ((yOffsets[j] + centreY) * terrain.nj) + ((xOffsets[j] + centreX) * terrain.ni);
+			erosionBrushIndices[i][j] = (yOffsets[j] + centreY) * terrain.nj + xOffsets[j] + centreX;
 			erosionBrushWeights[i][j] = weights[j] / weightSum;
 		}
 	}
@@ -59,6 +60,8 @@ Terrain Erosion::ErodeTerrain(int numIteration, Terrain terrain, ErosionParamete
 	{
 		float posX = float_rand(0.0f, terrain.ni - 1);
 		float posY = float_rand(0.0f, terrain.nj - 1);
+		cout << "PosX: " << posX << endl;
+		cout << "PosY: " << posY << endl;
 		float dirX = 0;
 		float dirY = 0;
 
@@ -71,6 +74,9 @@ Terrain Erosion::ErodeTerrain(int numIteration, Terrain terrain, ErosionParamete
 			int nodeX = (int)posX;
 			int nodeY = (int)posY;
 
+			cout << "NodeX before moving: " << nodeX << endl;
+			cout << "NodeY before moving: " << nodeY << endl;
+
 			int dropletIndex = terrain.getIndex(nodeX, nodeY);
 
 			// Calculate droplet's offset inside the cell (0,0) = at NW node, (1,1) = at SE node
@@ -78,10 +84,14 @@ Terrain Erosion::ErodeTerrain(int numIteration, Terrain terrain, ErosionParamete
 			float cellOffsetY = posY - nodeY;
 
 			Vector gradient = terrain.gradient(posX, posY);
+			cout << "Gradient X : " << gradient[0] << " Gradient Y : " << gradient[1] << " Gradient Z : " << gradient[2] << endl;
 			float baseHeight = terrain.getHeight(nodeX, nodeY);
 
 			dirX = (dirX * parameter.inertia - gradient[0] * (1 - parameter.inertia));
 			dirY = (dirY * parameter.inertia - gradient[1] * (1 - parameter.inertia));
+
+			cout << "DirX: " << dirX << endl;
+			cout << "DirY: " << dirY << endl;
 
 			float len = sqrt(dirX * dirX + dirY * dirY);
 			if (len != 0) {
@@ -96,8 +106,12 @@ Terrain Erosion::ErodeTerrain(int numIteration, Terrain terrain, ErosionParamete
 				break;
 			}
 
+			nodeX = (int)posX;
+			nodeY = (int)posY;
+			cout << "NodeX after moving: " << nodeX << endl;
+			cout << "NodeY after moving: " << nodeY << endl;
 
-			float newHeight = terrain.getHeight((int)posX, (int)posY);
+			float newHeight = terrain.getHeight(nodeX, nodeY);
 			float deltaHeight = newHeight - baseHeight;
 
 			// Calculate the droplet's sediment capacity (higher when moving fast down a slope and contains lots of water)
@@ -122,6 +136,8 @@ Terrain Erosion::ErodeTerrain(int numIteration, Terrain terrain, ErosionParamete
 			}
 			else
 			{
+				// Erode a fraction of the droplet's current carry capacity.
+				// Clamp the erosion to the change in height so that it doesn't dig a hole in the terrain behind the droplet
 				float amountToErode = min((sedimentCapacity - sediment) * parameter.erodeSpeed, -deltaHeight);
 				
 				// Use erosion brush to erode from all nodes inside the droplet's erosion radius
@@ -129,8 +145,8 @@ Terrain Erosion::ErodeTerrain(int numIteration, Terrain terrain, ErosionParamete
 					int nodeIndex = erosionBrushIndices[dropletIndex][brushPointIndex];
 
 					float weighedErodeAmount = amountToErode * erosionBrushWeights[dropletIndex][brushPointIndex];
-					float deltaSediment = (terrain.getHeight(nodeIndex-1) < weighedErodeAmount) ? terrain.getHeight(nodeIndex-1) : weighedErodeAmount;
-					terrain.addHeight(nodeIndex-1, -deltaSediment);
+					float deltaSediment = (terrain.getHeight(nodeIndex) < weighedErodeAmount) ? terrain.getHeight(nodeIndex) : weighedErodeAmount;
+					terrain.addHeight(nodeIndex, -deltaSediment);
 					sediment += deltaSediment;
 				}
 			}
@@ -140,11 +156,19 @@ Terrain Erosion::ErodeTerrain(int numIteration, Terrain terrain, ErosionParamete
 			water *= (1 - parameter.evaporateSpeed);
 		}
 	}
+	cout << "";
 	return terrain;
 }
 
 float Erosion::float_rand(float min, float max)
 {
-	float scale = rand() / (float)RAND_MAX; /* [0, 1.0] */
-	return min + scale * (max - min);      /* [min, max] */
+	// this  function assumes max > min, you may want 
+	// more robust error checking for a non-debug build
+	assert(max > min);
+	float random = ((float)rand()) / (float)RAND_MAX;
+
+	// generate (in your case) a float between 0 and (4.5-.78)
+	// then add .78, giving you a float between .78 and 4.5
+	float range = max - min;
+	return (random * range) + min;
 }
