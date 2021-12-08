@@ -7,7 +7,7 @@ ScalarField::ScalarField()
 
 ScalarField::ScalarField(Box data, int nbX, int nbY) {
 	//constructor used by terrain cpp
-
+	//added a small text
 	this->box = data;
 	this->ni = nbX;
 	this->nj = nbY;
@@ -22,12 +22,22 @@ ScalarField::ScalarField(Box data, int nbX, int nbY) {
 			int position;
 			position = getIndex(x, y);
 			this->vecField.v.push_back(Vector(this->intervalX * x + this->box[0][0], this->intervalY * y + this->box[0][1], 0));
-			//i add the length to the starting point from data[0], so it includeds every possibility and is clean
+			//i add the length to the starting point from data[0], so it includes every possibility and is clean
 			this->heightVector.push_back(0);//here we fill it separately
 		}
 	}
 }
-
+Box ScalarField::getBox()
+{
+	return this->box;
+}
+int ScalarField::getSize() {
+	return (ni * nj);
+}
+void ScalarField::addHeight(int i, int j, float val) {
+	int index = getIndex(i, j);
+	this->heightVector[index] = this->heightVector[index]+val;
+}
 
 float ScalarField::getHeight(int i, int j) {
 	//gives height of the point in x y, stored in heightVector
@@ -38,6 +48,16 @@ float ScalarField::getHeight(int i, int j) {
 float ScalarField::getHeight(int index) {
 	//gives height of the point in x y, stored in heightVector
 	return this->heightVector[index];
+}
+float ScalarField::getMaxHeight() {
+	float max = 0;
+	int size = this->ni * this->nj;
+	for (int i = 0; i < size; i++) {
+		if (this->heightVector[i] > max) {
+			max = i;
+		}
+	}
+	return this->heightVector[max];
 }
 
 Vector ScalarField::gradient(int i, int j) {
@@ -97,7 +117,7 @@ float ScalarField::slope(int i, int j) {
 }
 
 int ScalarField::getIndex(int i, int j) {
-	//since vecFGield and heightVectore are one dimensionnal, we need to calculate where the data for the point in x y is stored
+	//since vectorField and heightVector are one dimensionnal, we need to calculate where the data for the point in x y is stored
 	return (i * nj) + j;
 }
 
