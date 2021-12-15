@@ -99,8 +99,6 @@
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-
-   
     <ClCompile Include="Source\box.cpp" />
     <ClCompile Include="Source\camera.cpp" />
     <ClCompile Include="Source\erosion-parameter.cpp" />
@@ -159,15 +157,12 @@
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
-
-
     <ClInclude Include="Include\box.h" />
     <ClInclude Include="Include\camera.h" />
     <ClInclude Include="Include\color.h" />
     <ClInclude Include="Include\erosion-parameter.h" />
     <ClInclude Include="Include\erosion.h" />
     <ClInclude Include="Include\evector.h" />
-    <ClInclude Include="Include\OBJ_Loader.h" />
     <ClInclude Include="Include\scalar-field.h" />
     <ClInclude Include="Include\mathematics.h" />
     <ClInclude Include="Include\mesh.h" />
