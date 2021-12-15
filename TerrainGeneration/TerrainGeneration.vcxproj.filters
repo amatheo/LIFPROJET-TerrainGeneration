@@ -51,9 +51,9 @@
       <Filter>Source\Core</Filter>
     </ClCompile>
     <ClCompile Include="Source\erosion.cpp">
-      <Filter>Source\Core</Filter>
-    </ClCompile>
-    <ClCompile Include="erosionCo.cpp">
+
+
+
       <Filter>Source\Core</Filter>
     </ClCompile>
   </ItemGroup>

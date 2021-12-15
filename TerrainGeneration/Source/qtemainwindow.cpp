@@ -91,8 +91,8 @@ void MainWindow::GeneratePlaneMesh() {
 
 	QImage image = QImage();
 
-	Box b = Box(Vector(0, 0, 0), Vector(25, 25, 0));
-	currentTerrain = Terrain(image, b, 10, 0);
+	Box b = Box(Vector(0, 0, 0), Vector(10, 10, 0));
+	currentTerrain = Terrain(image, b, 2);
 
 	meshColor = MeshColor(currentTerrain.toMesh());
 
@@ -108,7 +108,7 @@ void MainWindow::GeneratePlaneMesh() {
 void MainWindow::StartErosion()
 {
 	ErosionParameter param = ErosionParameter();
-	currentTerrain = Erosion::ErodeTerrain(10000, currentTerrain, param);
+	currentTerrain = Erosion::ErodeTerrain(1000, currentTerrain, param);
 	meshColor = MeshColor(currentTerrain.toMesh());
 	meshWidget->ClearAll();
 	meshWidget->AddMesh("TerrainMesh", meshColor);
