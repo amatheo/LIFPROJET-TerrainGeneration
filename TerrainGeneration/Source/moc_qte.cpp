@@ -23,7 +23,11 @@ QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_MainWindow_t {
     QByteArrayData data[14];
+
     char stringdata0[178];
+
+    char stringdata0[192];
+
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -44,16 +48,26 @@ QT_MOC_LITERAL(8, 93, 22), // "ChangeCameraProjection"
 QT_MOC_LITERAL(9, 116, 17), // "GeneratePlaneMesh"
 QT_MOC_LITERAL(10, 134, 12), // "StartErosion"
 QT_MOC_LITERAL(11, 147, 13), // "UpdateTerrain"
+
 QT_MOC_LITERAL(12, 161, 9), // "SpawnTree"
 QT_MOC_LITERAL(13, 171, 6) // "MoveUp"
+
+QT_MOC_LITERAL(12, 161, 20), // "ChangeHeightmapImage"
+
+
 
     },
     "MainWindow\0editingSceneLeft\0\0Ray\0"
     "editingSceneRight\0BoxMeshExample\0"
     "ResetCamera\0UpdateMaterial\0"
     "ChangeCameraProjection\0GeneratePlaneMesh\0"
+
     "StartErosion\0UpdateTerrain\0SpawnTree\0"
     "MoveUp"
+
+    "StartErosion\0UpdateTerrain\0"
+    "ChangeHeightmapImage\0SpawnTree"
+
 };
 #undef QT_MOC_LITERAL
 
@@ -114,8 +128,13 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 6: _t->GeneratePlaneMesh(); break;
         case 7: _t->StartErosion(); break;
         case 8: _t->UpdateTerrain(); break;
+
         case 9: _t->SpawnTree(); break;
         case 10: _t->MoveUp(); break;
+
+        case 9: _t->ChangeHeightmapImage(); break;
+        case 10: _t->SpawnTree(); break;
+
         default: ;
         }
     }

@@ -22,6 +22,7 @@
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QRadioButton>
+#include <QtWidgets/QSpinBox>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -44,6 +45,8 @@ public:
     QGroupBox *LoadingBox;
     QPushButton *boxMesh;
     QPushButton *terrainMeshButton;
+    QLabel *selectedImage;
+    QPushButton *loadHeightmapButton;
     QWidget *widget_GL;
     QGroupBox *Parameters_groupBox;
     QGroupBox *groupBox_4;
@@ -60,10 +63,14 @@ public:
     QGroupBox *groupBox_5;
     QPushButton *erodeButton;
     QPushButton *spawnTreeButton;
+
     QPushButton *upButton;
     QPushButton *rightButton;
     QPushButton *bottomButton;
     QPushButton *leftButton;
+
+    QSpinBox *iterationBox;
+
     QMenuBar *menubar;
     QMenu *menuFile;
 
@@ -108,7 +115,7 @@ public:
         Objects_groupBox->setMinimumSize(QSize(350, 250));
         LoadingBox = new QGroupBox(Objects_groupBox);
         LoadingBox->setObjectName(QString::fromUtf8("LoadingBox"));
-        LoadingBox->setGeometry(QRect(20, 20, 311, 111));
+        LoadingBox->setGeometry(QRect(20, 20, 311, 171));
         LoadingBox->setFlat(false);
         boxMesh = new QPushButton(LoadingBox);
         boxMesh->setObjectName(QString::fromUtf8("boxMesh"));
@@ -118,6 +125,22 @@ public:
         terrainMeshButton->setObjectName(QString::fromUtf8("terrainMeshButton"));
         terrainMeshButton->setGeometry(QRect(20, 60, 81, 23));
         terrainMeshButton->setCheckable(false);
+        selectedImage = new QLabel(LoadingBox);
+        selectedImage->setObjectName(QString::fromUtf8("selectedImage"));
+        selectedImage->setGeometry(QRect(200, 60, 101, 101));
+        selectedImage->setMouseTracking(true);
+        selectedImage->setContextMenuPolicy(Qt::CustomContextMenu);
+        selectedImage->setAcceptDrops(true);
+        selectedImage->setFrameShape(QFrame::Box);
+        selectedImage->setFrameShadow(QFrame::Plain);
+        selectedImage->setTextFormat(Qt::RichText);
+        selectedImage->setScaledContents(true);
+        selectedImage->setAlignment(Qt::AlignCenter);
+        selectedImage->setTextInteractionFlags(Qt::NoTextInteraction);
+        loadHeightmapButton = new QPushButton(LoadingBox);
+        loadHeightmapButton->setObjectName(QString::fromUtf8("loadHeightmapButton"));
+        loadHeightmapButton->setGeometry(QRect(220, 30, 81, 23));
+        loadHeightmapButton->setCheckable(false);
 
         hboxLayout->addWidget(Objects_groupBox);
 
@@ -187,6 +210,7 @@ public:
         spawnTreeButton = new QPushButton(groupBox_5);
         spawnTreeButton->setObjectName(QString::fromUtf8("spawnTreeButton"));
         spawnTreeButton->setGeometry(QRect(10, 120, 75, 23));
+
         upButton = new QPushButton(groupBox_5);
         upButton->setObjectName(QString::fromUtf8("upButton"));
         upButton->setGeometry(QRect(130, 20, 75, 23));
@@ -199,6 +223,14 @@ public:
         leftButton = new QPushButton(groupBox_5);
         leftButton->setObjectName(QString::fromUtf8("leftButton"));
         leftButton->setGeometry(QRect(90, 50, 75, 23));
+
+        iterationBox = new QSpinBox(groupBox_5);
+        iterationBox->setObjectName(QString::fromUtf8("iterationBox"));
+        iterationBox->setGeometry(QRect(110, 60, 61, 22));
+        iterationBox->setMinimum(100);
+        iterationBox->setMaximum(5000);
+        iterationBox->setSingleStep(100);
+
 
         hboxLayout->addWidget(Parameters_groupBox);
 
@@ -255,6 +287,16 @@ public:
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-style:italic; color:#aa00ff;\">Create Eurographics 1996 Bear</span></p></body></html>", nullptr));
 #endif // QT_CONFIG(tooltip)
         terrainMeshButton->setText(QCoreApplication::translate("Assets", "Terrain Mesh", nullptr));
+        selectedImage->setText(QCoreApplication::translate("Assets", "No image", nullptr));
+#if QT_CONFIG(tooltip)
+        loadHeightmapButton->setToolTip(QCoreApplication::translate("Assets", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'MS Shell Dlg 2'; font-size:8pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#5500ff;\">Callback #01</span></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-style:italic; color:#aa00ff;\">Create Eurographics 1996 Bear</span></p></body></html>", nullptr));
+#endif // QT_CONFIG(tooltip)
+        loadHeightmapButton->setText(QCoreApplication::translate("Assets", "Load Greyscale", nullptr));
         Parameters_groupBox->setTitle(QString());
         groupBox_4->setTitle(QCoreApplication::translate("Assets", " Statistics", nullptr));
         label_2->setText(QCoreApplication::translate("Assets", "Vertex", nullptr));
