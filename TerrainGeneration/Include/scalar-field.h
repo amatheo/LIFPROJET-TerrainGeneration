@@ -25,10 +25,14 @@ public:
 	void addHeight(int i, int j, float val);
 	void addHeight(int index, float val);
 
+	Box getBox();
 	float getHeight(int i, int j);//the method val() 
 	float getHeight(int index);
 	float getMaxHeight();
 	int getSize();
+	float getIntervalX();
+	float getIntervalY();
+
 	float slope(int i, int j);
 	Vector gradient(float posX, float posY);
 	int getIndex(int i, int j);

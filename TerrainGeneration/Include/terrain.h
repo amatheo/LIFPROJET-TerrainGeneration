@@ -21,5 +21,8 @@ public:
 
 	Mesh toMesh();
 	~Terrain();
+
+	vector<int> getTreeList();
+	bool checkTree(int i);
 };
 #endif

@@ -1,9 +1,11 @@
 #include "qte.h"
 
 
+
 #include <QtWidgets/qfiledialog.h>
 #include "terrain.h"
 #include <erosion.h>
+#include "OBJ_Loader.h"
 
 MainWindow::MainWindow()
 {
@@ -127,10 +129,48 @@ void MainWindow::UpdateTerrain()
 
 void MainWindow::SpawnTree()
 {
-	//remplir moi même
-	//créer un mesh
-	//charger fichier .obj pour l'arbre mesh load
-	//meshcolor pour créer l'objet, meshwidget->addMesh pour l'ajouter
 
+
+	//fix problem
+	int maxY = currentTerrain.nj;
+	int ratioX = currentTerrain.getIntervalX();
+	int ratioY = currentTerrain.getIntervalY();
+	int xpos = 0;
+	int ypos = 0;
+	int zpos;
+	
+	vector<int> treeList = currentTerrain.getTreeList();
+	
+	for (int i = 0; i<treeList.size();i++) {
+		
+		
+		
+		if (treeList[i] > 0){
+			zpos = currentTerrain.getHeight(i);
+			meshColor = MeshColor(Mesh(Box(0.5)));
+			Vector dir(xpos* ratioX, ypos*ratioY, zpos);
+			meshColor.Translate(dir);
+			meshWidget->AddMesh("tree"+i, meshColor);
+			
+		}
+
+
+
+		if (ypos == maxY) {
+			ypos = 0;
+			xpos++;
+		}
+		else {
+			ypos++;
+		}
+
+		
+
+	}
+
+	
+
+
+	
 	UpdateMaterial();
 }

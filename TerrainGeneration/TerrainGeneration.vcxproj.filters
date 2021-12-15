@@ -51,6 +51,9 @@
       <Filter>Source\Core</Filter>
     </ClCompile>
     <ClCompile Include="Source\erosion.cpp">
+
+
+
       <Filter>Source\Core</Filter>
     </ClCompile>
   </ItemGroup>
@@ -127,6 +130,12 @@
       <Filter>Include</Filter>
     </ClInclude>
     <ClInclude Include="Include\erosion.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="erosionCo.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\OBJ_Loader.h">
       <Filter>Include</Filter>
     </ClInclude>
   </ItemGroup>

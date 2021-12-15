@@ -29,6 +29,10 @@ ScalarField::ScalarField(Box data, int nbX, int nbY) {
 		}
 	}
 }
+Box ScalarField::getBox()
+{
+	return this->box;
+}
 
 void ScalarField::setHeight(int i, int j, float val) {
 	int index = getIndex(i, j);
@@ -47,6 +51,14 @@ void ScalarField::addHeight(int index, float val)
 
 int ScalarField::getSize() {
 	return (ni * nj);
+}
+
+float ScalarField::getIntervalX(){
+	return this->intervalX;
+}
+
+float ScalarField::getIntervalY() {
+	return this->intervalY;
 }
 
 
