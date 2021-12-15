@@ -1,0 +1,12 @@
+digraph "Mesh::AddQuadrangle"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="Mesh::AddQuadrangle",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Add a quadrangle to the geometry."];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="Mesh::AddSmoothQuadrangle",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_mesh.html#a48e99598f0c7b1ba7231e98a07b8d10c",tooltip="Add a smmoth quadrangle to the geometry."];
+  Node2 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="Mesh::AddSmoothTriangle",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_mesh.html#a53b06b460860c9f904216f58a4a09b0c",tooltip="Add a smooth triangle to the geometry."];
+}

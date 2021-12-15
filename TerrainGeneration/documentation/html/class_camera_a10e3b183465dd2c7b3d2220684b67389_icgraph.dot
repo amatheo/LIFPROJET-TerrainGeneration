@@ -1,0 +1,36 @@
+digraph "Camera::GetAngleOfViewV"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="RL";
+  Node1 [label="Camera::GetAngleOfViewV",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Returns the vertical angle of view."];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="Camera::PixelToRay",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_camera.html#a80e5e7f22b83f321b8f83b388aae1926",tooltip="Compute the equation of a ray given a pixel in the camera plane."];
+  Node2 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="MeshWidget::ComputeRay",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_mesh_widget.html#a54d24d0e867bf907b3a7d50cf36c449e",tooltip="Computes a ray from a pixel."];
+  Node3 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="MeshWidget::mousePressEvent",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_mesh_widget.html#a3e5b0f9e1155a6e287d13befd9c60d55",tooltip="Process mouse click events."];
+  Node1 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="MeshWidget::resizeGL",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_mesh_widget.html#a4bbeb0cd502a0cd6e329e1488648eac7",tooltip="Resize window."];
+  Node1 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="MeshWidget::SetCamera",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_mesh_widget.html#a069a5373e7200ca6aa0a036b0a5b2a37",tooltip="Set the camera for the widget."];
+  Node6 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="MainWindow::MainWindow",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_main_window.html#a34c4b4207b46d11a4100c9b19f0e81bb",tooltip=" "];
+  Node6 -> Node8 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node8 [label="MainWindow::ResetCamera",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_main_window.html#adcb5ac68978bf204fbf1610ae6347eae",tooltip=" "];
+  Node8 -> Node9 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node9 [label="MainWindow::CreateActions",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_main_window.html#ac196f381c4aad2f18848f1cf490eba35",tooltip=" "];
+  Node9 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node1 -> Node10 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node10 [label="MeshWidget::SetCameraMode",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_mesh_widget.html#aee199457b27af2efbe3db0e552c1649a",tooltip="Set the camera mode (perspective or orthographic)."];
+  Node10 -> Node11 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node11 [label="MainWindow::ChangeCamera\lProjection",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_main_window.html#a2dab4cfb073d2b8a4e08cf5ca399244c",tooltip=" "];
+  Node11 -> Node9 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node1 -> Node12 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node12 [label="MeshWidget::SetNearAndFar\lPlane",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_mesh_widget.html#a622efd906553896d76edb9161e095885",tooltip="Set the near and far clipping planes of the camera."];
+  Node12 -> Node13 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node13 [label="MeshWidget::initializeGL",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_mesh_widget.html#a7e1660885be499030bbf9bed27a33749",tooltip="Initialize OpenGL, shaders and a camera centered at origin."];
+  Node1 -> Node14 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node14 [label="Camera::VectorToPixel",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_camera.html#afa53357c8db7308fc4dced087a24c894",tooltip="Compute coordinates of a point in the camera plane."];
+}

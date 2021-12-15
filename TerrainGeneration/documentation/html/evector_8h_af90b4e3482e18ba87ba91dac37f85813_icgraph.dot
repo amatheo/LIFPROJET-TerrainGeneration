@@ -1,0 +1,39 @@
+digraph "Norm"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="RL";
+  Node1 [label="Norm",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Compute the Euclidean norm of a vector."];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="Triangle::Area",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_triangle.html#a4dcaa40edddf0190ce3e5f235c402b3f",tooltip="Compute the area of the triangle."];
+  Node1 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="Triangle::Aspect",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_triangle.html#ae3d0cf13f10576fadb6d2f74df28e9eb",tooltip="Computes the aspect ratio of the triangle."];
+  Node1 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="Camera::BackForth",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_camera.html#abcacfd88f089985e58a8e15e51f9fb62",tooltip="Moves the eye point towards or away from the look at point."];
+  Node4 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="MeshWidget::mouseMoveEvent",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_mesh_widget.html#aa31603f127bd195bcfa3a76b29034a48",tooltip="Process the mouse move events."];
+  Node4 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="MeshWidget::wheelEvent",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_mesh_widget.html#a4956bddec853058e4e2795d4e7a2954a",tooltip="Process the mouse wheel events."];
+  Node1 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="Triangle::CircumscribedRadius",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_triangle.html#af66d93d5f2d082c2ef55e05ad6c85a35",tooltip="Compute the radius of the circumscribed circle of the triangle."];
+  Node1 -> Node8 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node8 [label="Triangle::InscribedRadius",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_triangle.html#a5293257277b5aa65b46e9315fff5d8cc",tooltip="Compute the radius of the circle inscribed in the triangle."];
+  Node1 -> Node9 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node9 [label="Camera::LeftRightHorizontal",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_camera.html#a4709df522412194fdfbeb42c3a804b91",tooltip="Moves the camera left or right, preserving its height."];
+  Node9 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node1 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node1 -> Node10 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node10 [label="Box::Radius",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_box.html#ab71a786d2e12d6148871950e9251f533",tooltip="Returns the radius of the box, i.e. the length of the half diagonal of the box."];
+  Node1 -> Node11 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node11 [label="ScalarField::slope",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_scalar_field.html#a613544e334d737e998cb4322cf1ff701",tooltip=" "];
+  Node1 -> Node12 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node12 [label="Camera::UpDownRound",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_camera.html#a5ac5c8289024a99760fda8678060d7a8",tooltip="Rotates the camera relatively to the look-at point."];
+  Node12 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node1 -> Node13 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node13 [label="Camera::UpDownVertical",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_camera.html#abba5d1268ed072d535aab9d75d91fc74",tooltip="Moves the camera vertically."];
+  Node13 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node1 -> Node14 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node14 [label="Camera::Vertical",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_camera.html#a142411050273fab1e7a77fb585afb3e0",tooltip="Reset the camera so that the up vector should point to the sky."];
+  Node1 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+}

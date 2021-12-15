@@ -1,0 +1,27 @@
+digraph "Vector::Vector"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="RL";
+  Node1 [label="Vector::Vector",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Empty."];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="Vector::Inverse",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_vector.html#a1a62ac859fd3f828e2912677e3d58ac3",tooltip="Inverse of a vector."];
+  Node1 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="Vector::Max",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_vector.html#ad29a471bb33de525700da31ad623d3d5",tooltip="Return a vector with coordinates set to the maximum coordinates of the two argument vectors."];
+  Node3 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="Box::Box",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_box.html#a0a7c6f0b0405db01518bb3201b00c9a2",tooltip="Create a box embedding two boxes."];
+  Node3 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="Box::Extend",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_box.html#a8564a726852870e8db130a04d068f436",tooltip="Extend the limits of the box given a point."];
+  Node3 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="Triangle::GetBox",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_triangle.html#a6f2fee2fe67859253386fd8d1ed52401",tooltip="Computes the axis aligned box enclosing the triangle."];
+  Node1 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="Vector::Min",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_vector.html#a5eee9cdcf6c63a08067909ed34dca824",tooltip="Return a vector with coordinates set to the minimum coordinates of the two argument vectors."];
+  Node7 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node1 -> Node8 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node8 [label="Vector::operator-",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_vector.html#a8226fda013671ae804712d085cc0a12c",tooltip="Overloaded."];
+  Node1 -> Node9 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node9 [label="Vector::Scaled",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_vector.html#acc08ed7c396661b9ca6ee0ca12f8267e",tooltip="Scale a vector."];
+}

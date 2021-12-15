@@ -1,0 +1,22 @@
+digraph "Erosion::ErodeTerrain"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="Erosion::ErodeTerrain",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="this is the Erosion class definition, it basically applies the erosion parameters on the terrain"];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="ScalarField::addHeight",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_scalar_field.html#a020b04292822a3d0f24f1cfb32d1018e",tooltip=" "];
+  Node2 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="ScalarField::getIndex",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_scalar_field.html#a3cf872fb00961a510376e953fe9e273a",tooltip=" "];
+  Node1 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="Erosion::float_rand",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_erosion.html#afc9e70b808ad8134ad571ee599d9764f",tooltip="assigns a random position to the droplet."];
+  Node1 -> Node5 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="ScalarField::getHeight",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_scalar_field.html#a496c6dbf5b28cdfdfea2f341d52ad171",tooltip=" "];
+  Node5 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node1 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node1 -> Node6 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="ScalarField::gradient",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_scalar_field.html#a914988961f121085b0f5b3b6011da5c1",tooltip=" "];
+  Node6 -> Node5 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+}

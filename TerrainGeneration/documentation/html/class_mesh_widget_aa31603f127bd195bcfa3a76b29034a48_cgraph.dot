@@ -1,0 +1,28 @@
+digraph "MeshWidget::mouseMoveEvent"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="MeshWidget::mouseMoveEvent",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Process the mouse move events."];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="Camera::BackForth",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_camera.html#abcacfd88f089985e58a8e15e51f9fb62",tooltip="Moves the eye point towards or away from the look at point."];
+  Node2 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="Norm",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$evector_8h.html#af90b4e3482e18ba87ba91dac37f85813",tooltip="Compute the Euclidean norm of a vector."];
+  Node1 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="Camera::LeftRightHorizontal",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_camera.html#a4709df522412194fdfbeb42c3a804b91",tooltip="Moves the camera left or right, preserving its height."];
+  Node4 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node1 -> Node5 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="Camera::LeftRightRound",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_camera.html#ae19a999bcc1ed520f08f154b1253a8e7",tooltip="Rotates the camera relatively to the look-at point."];
+  Node5 -> Node6 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="Normalized",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$evector_8h.html#a69dac1e81907adf00b7ac711610542a6",tooltip="Return a normalized vector."];
+  Node1 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node1 -> Node7 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="Camera::UpDownRound",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_camera.html#a5ac5c8289024a99760fda8678060d7a8",tooltip="Rotates the camera relatively to the look-at point."];
+  Node7 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node1 -> Node8 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node8 [label="Camera::UpDownVertical",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_camera.html#abba5d1268ed072d535aab9d75d91fc74",tooltip="Moves the camera vertically."];
+  Node8 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node1 -> Node9 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node9 [label="Camera::View",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_camera.html#ad9e3b1b70b5096493b417c0622c69612",tooltip="Returns the view direction."];
+}

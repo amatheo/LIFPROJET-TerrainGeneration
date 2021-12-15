@@ -1,0 +1,18 @@
+digraph "Camera::Up"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="RL";
+  Node1 [label="Camera::Up",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Returns the up point."];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="MeshWidget::paintGL",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_mesh_widget.html#a16bcc83fc341dabedd1de588c40b779d",tooltip="Renders the scene."];
+  Node1 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="Camera::PixelToRay",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_camera.html#a80e5e7f22b83f321b8f83b388aae1926",tooltip="Compute the equation of a ray given a pixel in the camera plane."];
+  Node3 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="MeshWidget::ComputeRay",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_mesh_widget.html#a54d24d0e867bf907b3a7d50cf36c449e",tooltip="Computes a ray from a pixel."];
+  Node4 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="MeshWidget::mousePressEvent",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_mesh_widget.html#a3e5b0f9e1155a6e287d13befd9c60d55",tooltip="Process mouse click events."];
+  Node1 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="Camera::VectorToPixel",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_camera.html#afa53357c8db7308fc4dced087a24c894",tooltip="Compute coordinates of a point in the camera plane."];
+}
