@@ -1,11 +1,11 @@
 #pragma once
-#ifndef __Erosion__
-#define __Erosion__
+#ifndef __ErosionCo__
+#define __ErosionCo__
 #include "terrain.h"
 
 
 #pragma once
-class Erosion : public Terrain
+class ErosionCo : public Terrain
 {
 
 
@@ -18,8 +18,8 @@ private:
 
 public:
 
-	Erosion();
-	Erosion(Terrain t ,int nbdrop);
+	ErosionCo();
+	ErosionCo(Terrain t ,int nbdrop);
 	void applyErosion();
 	void setAbsorption(float max, float amount);
 	void applyDroplet(int nbdrop);

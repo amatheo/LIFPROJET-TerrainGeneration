@@ -25,6 +25,7 @@ public:
 	void addHeight(int i, int j, float val);
 	void addHeight(int index, float val);
 
+	Box getBox();
 	float getHeight(int i, int j);//the method val() 
 	float getHeight(int index);
 	float getMaxHeight();

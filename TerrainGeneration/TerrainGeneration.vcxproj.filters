@@ -47,12 +47,13 @@
     <ClCompile Include="Source\realtime-moc.cpp">
       <Filter>Interface</Filter>
     </ClCompile>
-
     <ClCompile Include="Source\erosion-parameter.cpp">
       <Filter>Source\Core</Filter>
     </ClCompile>
     <ClCompile Include="Source\erosion.cpp">
-
+      <Filter>Source\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="erosionCo.cpp">
       <Filter>Source\Core</Filter>
     </ClCompile>
   </ItemGroup>
@@ -86,6 +87,9 @@
     </Filter>
     <Filter Include="Shaders">
       <UniqueIdentifier>{8b50c486-7a12-4404-bb16-16855aee3d6d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Assets">
+      <UniqueIdentifier>{24bb7128-e991-407a-a817-c410811a2e61}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -131,6 +135,12 @@
     <ClInclude Include="Include\erosion.h">
       <Filter>Include</Filter>
     </ClInclude>
+    <ClInclude Include="erosionCo.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\OBJ_Loader.h">
+      <Filter>Include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Shaders\mesh.glsl">
@@ -139,5 +149,10 @@
     <None Include="Shaders\skybox.glsl">
       <Filter>Shaders</Filter>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Object Include="Assets\tree_obj.obj">
+      <Filter>Assets</Filter>
+    </Object>
   </ItemGroup>
 </Project>

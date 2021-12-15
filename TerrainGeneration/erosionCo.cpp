@@ -1,10 +1,10 @@
-#include "erosion.h"
+#include "erosionCo.h"
 #include <vector>
 
-Erosion::Erosion() {
+ErosionCo::ErosionCo() {
 }
 
-Erosion::Erosion(Terrain t, int nbdrop):Terrain(t.heightmap, this->getBox(), this->za, this->zb){
+ErosionCo::ErosionCo(Terrain t, int nbdrop):Terrain(t.heightmap, this->getBox(), this->za, this->zb){
 	this->qtyDroplet = nbdrop;
 	this->amountAbsorption = getMaxHeight()*0.05;
 	this->maxAbsorption = this->amountAbsorption*10;
@@ -19,18 +19,18 @@ Erosion::Erosion(Terrain t, int nbdrop):Terrain(t.heightmap, this->getBox(), thi
 
 
 
-void Erosion::applyErosion() {
-	applyDroplet();
+void ErosionCo::applyErosion() {
+	applyDroplet(100);
 
 }
-void Erosion::setAbsorption( float max, float amount) {
+void ErosionCo::setAbsorption( float max, float amount) {
 	this->maxAbsorption = max;
 	this->amountAbsorption = amount;
 
 }
 
 
-void Erosion::applyDroplet(int nbdrop=100) {
+void ErosionCo::applyDroplet(int nbdrop = 100) {
 	for (int i=0; i < nbdrop; i++) {
 		this->speed = 0;//dummy stat for now
 		this->absorption = 0;
@@ -76,7 +76,7 @@ void Erosion::applyDroplet(int nbdrop=100) {
 	}
 }
 
-int Erosion::getDirection( int x, int y, int prevDir) {
+int ErosionCo::getDirection( int x, int y, int prevDir) {
 	//slope à réutiliser
 	//changer vitesse pour la rendre importante avec de l'inertie
 	int currentHeight = getHeight(x, y);
@@ -177,7 +177,7 @@ int Erosion::getDirection( int x, int y, int prevDir) {
 }
 
 
-vector<int> Erosion::getTreeList() {
+vector<int> ErosionCo::getTreeList() {
 	int size = getSize();
 	//vector<float> treeHeight; useless data, might be used one day, but for now heightVector is enough
 	vector<int> levelTree;
@@ -236,7 +236,7 @@ vector<int> Erosion::getTreeList() {
 
 	return trueLevelTree;
 }
-bool Erosion::checkTree(int i) {
+bool ErosionCo::checkTree(int i) {
 	int xPos = (i-(i%this->nj))/this->nj;
 	int yPos = (i % this->nj);
 	//the 4 points surrounding the original point

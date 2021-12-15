@@ -1,9 +1,11 @@
 #include "qte.h"
 
 
+
 #include <QtWidgets/qfiledialog.h>
 #include "terrain.h"
 #include <erosion.h>
+#include "OBJ_Loader.h"
 
 MainWindow::MainWindow()
 {
@@ -131,6 +133,21 @@ void MainWindow::SpawnTree()
 	//créer un mesh
 	//charger fichier .obj pour l'arbre mesh load
 	//meshcolor pour créer l'objet, meshwidget->addMesh pour l'ajouter
+	QImage image = QImage();
+
+	
+	objl::Loader loader;
+	loader.LoadFile("Assets\tree_obj.obj");
+
+	cout << loader.LoadedMeshes[0].MeshName << endl;
+
+	//fstream mytree ("./Objfiles/tree_obj.obj");
+	//mytree.open();
+
+	//meshColor = MeshColor(mytree.toMesh());
+	//meshWidget->AddMesh("mytree", meshColor);
+	//mytree.close();
+
 
 	UpdateMaterial();
 }
