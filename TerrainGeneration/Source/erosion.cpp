@@ -1,6 +1,14 @@
+//Erosion
 #include "erosion.h"
 #include <math.h>
 using namespace std;
+
+/*!
+* \brief this is the Erosion class definition, it basically applies the erosion parameters on the terrain
+* \param numIteration number of iterations
+* \param terrain the terrain
+* \param parameter a parameter of type Erosion-parameter
+*/
 Terrain Erosion::ErodeTerrain(int numIteration, Terrain terrain, ErosionParameter parameter)
 {
 	srand(time(NULL));
@@ -160,6 +168,11 @@ Terrain Erosion::ErodeTerrain(int numIteration, Terrain terrain, ErosionParamete
 	return terrain;
 }
 
+/*!
+* \brief assigns a random position to the droplet.
+* \param min the starting point
+* \param max the end point
+*/
 float Erosion::float_rand(float min, float max)
 {
 	// this  function assumes max > min, you may want 

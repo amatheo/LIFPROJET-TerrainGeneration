@@ -1,9 +1,17 @@
 #include "erosion.h"
 #include <vector>
-
+/*!
+* \brief constructor
+*/
 Erosion::Erosion() {
 }
 
+/*!
+* \brief constructor
+* \param t onto which the erosion will be applied
+* \param nbdrop number of droplets for the erosion
+* \returns Erosion type object
+*/
 Erosion::Erosion(Terrain t, int nbdrop):Terrain(t.heightmap, this->getBox(), this->za, this->zb){
 	this->qtyDroplet = nbdrop;
 	this->amountAbsorption = getMaxHeight()*0.05;
@@ -18,18 +26,29 @@ Erosion::Erosion(Terrain t, int nbdrop):Terrain(t.heightmap, this->getBox(), thi
 }
 
 
-
+/*!
+* \brief 
+* \returns void
+*/
 void Erosion::applyErosion() {
 	applyDroplet();
-
 }
+
+/*!
+* \param max
+* \param amount
+* \returns void
+*/
 void Erosion::setAbsorption( float max, float amount) {
 	this->maxAbsorption = max;
 	this->amountAbsorption = amount;
 
 }
 
-
+/*!
+* \param nbdrop number of drops equals to 100
+* \returns void
+*/
 void Erosion::applyDroplet(int nbdrop=100) {
 	for (int i=0; i < nbdrop; i++) {
 		this->speed = 0;//dummy stat for now
@@ -76,6 +95,12 @@ void Erosion::applyDroplet(int nbdrop=100) {
 	}
 }
 
+/*!
+* \param x the x direction
+* \param y the y direction
+* \param prevDir the previous direction
+* \returns integer
+*/
 int Erosion::getDirection( int x, int y, int prevDir) {
 	//slope à réutiliser
 	//changer vitesse pour la rendre importante avec de l'inertie
@@ -176,7 +201,10 @@ int Erosion::getDirection( int x, int y, int prevDir) {
 
 }
 
-
+/*!
+* \brief 
+* \returns vector of type integer
+*/
 vector<int> Erosion::getTreeList() {
 	int size = getSize();
 	//vector<float> treeHeight; useless data, might be used one day, but for now heightVector is enough
@@ -236,6 +264,11 @@ vector<int> Erosion::getTreeList() {
 
 	return trueLevelTree;
 }
+
+/*!
+* \param i integer
+* \returns boolean
+*/
 bool Erosion::checkTree(int i) {
 	int xPos = (i-(i%this->nj))/this->nj;
 	int yPos = (i % this->nj);

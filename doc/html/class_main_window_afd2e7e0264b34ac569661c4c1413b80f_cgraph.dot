@@ -1,0 +1,22 @@
+digraph "MainWindow::BoxMeshExample"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="MainWindow::BoxMeshExample",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="MainWindow::UpdateGeometry",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_main_window.html#a83076530be71a508d882121ae970063f",tooltip=" "];
+  Node2 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="MeshWidget::AddMesh",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_mesh_widget.html#a25e2ac4f7c5150af5913c3494edbdbc6",tooltip="Add a new mesh in the scene."];
+  Node2 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="MeshWidget::ClearAll",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_mesh_widget.html#acb3d16bfcc6d4c8e0d888cec02bc9ba6",tooltip="Destroys all mesh objects in the scene."];
+  Node2 -> Node5 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="Mesh::Triangles",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_mesh.html#ab7f3f94add95384d89653968688ebb2f",tooltip="Get the number of triangles."];
+  Node2 -> Node6 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="MainWindow::UpdateMaterial",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_main_window.html#a4c2cc405cef743090b55975f37eeceae",tooltip=" "];
+  Node6 -> Node7 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="MeshWidget::UseWireframe\lGlobal",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_mesh_widget.html#a51cd81908cbc6e3b58b72236009ee563",tooltip="Changes the wireframe render flag for all meshes."];
+  Node2 -> Node8 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node8 [label="Mesh::Vertexes",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_mesh.html#a95961b24205dcbee0a32c2e63626a043",tooltip="Get the number of vertices in the geometry."];
+}

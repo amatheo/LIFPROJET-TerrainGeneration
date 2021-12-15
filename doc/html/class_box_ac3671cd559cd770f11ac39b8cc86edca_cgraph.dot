@@ -1,0 +1,12 @@
+digraph "Box::Sub"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="Box::Sub",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Computes the sub-box in the n-th octant."];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="Box::Box",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_box.html#aca78d7db44972bfa78d46b7bbc8796f6",tooltip="Empty."];
+  Node1 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="Box::Center",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_box.html#a93413e9afaf499d8a6e4f0f942a0cc28",tooltip="Returns the center of the box."];
+}

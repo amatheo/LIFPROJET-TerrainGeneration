@@ -1,0 +1,19 @@
+digraph "shader_string"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="RL";
+  Node1 [label="shader_string",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="program_format_errors",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$shader-api_8cpp.html#acb379652a3176b4038d8badff9108214",tooltip=" "];
+  Node2 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="program_print_errors",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$shader-api_8cpp.html#a873fe3eb898a9ffe19c8274f83116b8a",tooltip=" "];
+  Node3 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="read_program",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$shader-api_8cpp.html#a12fb5314d4690f49fc42abd1767d2a68",tooltip=" "];
+  Node4 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="MeshWidget::initializeGL",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_mesh_widget.html#a7e1660885be499030bbf9bed27a33749",tooltip="Initialize OpenGL, shaders and a camera centered at origin."];
+  Node1 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="reload_program",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$shader-api_8cpp.html#ab0906abeee83bcb28874b8758423c558",tooltip=" "];
+  Node6 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+}

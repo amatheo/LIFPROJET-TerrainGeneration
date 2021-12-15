@@ -1,14 +1,31 @@
+//Terrain
 #include "terrain.h"
 #include <QtGui/QImage>
 
+/*!
+* \brief constructor
+* \param image here we can pass a heightmap to generate a terrain
+* \param box
+* \param za
+* \param zb
+*/
 Terrain::Terrain(QImage image, Box box, int za, int zb):ScalarField(box, 50, 50)
 {
 }
 
+/*!
+* \brief constructor
+*/
 Terrain::Terrain() : ScalarField()
 {
 }
 
+/*!
+* \brief returns the Vector type object in the coordinates (i,j)
+* \param i 
+* \param j
+* \returns Vector object
+*/
 Vector Terrain::getPoint(int i, int j)
 {
 	Vector vec = Vector();
@@ -17,11 +34,20 @@ Vector Terrain::getPoint(int i, int j)
 	return vec;
 }
 
+/*!
+* \param i
+* \param j
+* \returns Vector object
+*/
 Vector Terrain::getNormal(int i, int j)
 {
 	return Vector::Z;
 }
 
+/*!
+* \brief transforms the current Terrain type object into a Mesh type object
+* \returns Mesh type object
+*/
 Mesh Terrain::toMesh()
 {
 	QVector<Vector> vertices;
@@ -64,6 +90,9 @@ Mesh Terrain::toMesh()
 	return m;
 }
 
+/*!
+* \brief destructor
+*/
 Terrain::~Terrain()
 {
 }

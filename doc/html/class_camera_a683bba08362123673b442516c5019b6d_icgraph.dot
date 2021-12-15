@@ -1,0 +1,30 @@
+digraph "Camera::GetFar"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="RL";
+  Node1 [label="Camera::GetFar",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Get the far distance."];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="MeshWidget::resizeGL",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_mesh_widget.html#a4bbeb0cd502a0cd6e329e1488648eac7",tooltip="Resize window."];
+  Node1 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="MeshWidget::SetCamera",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_mesh_widget.html#a069a5373e7200ca6aa0a036b0a5b2a37",tooltip="Set the camera for the widget."];
+  Node3 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="MainWindow::MainWindow",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_main_window.html#a34c4b4207b46d11a4100c9b19f0e81bb",tooltip=" "];
+  Node3 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="MainWindow::ResetCamera",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_main_window.html#adcb5ac68978bf204fbf1610ae6347eae",tooltip=" "];
+  Node5 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="MainWindow::CreateActions",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_main_window.html#ac196f381c4aad2f18848f1cf490eba35",tooltip=" "];
+  Node6 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node1 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="MeshWidget::SetCameraMode",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_mesh_widget.html#aee199457b27af2efbe3db0e552c1649a",tooltip="Set the camera mode (perspective or orthographic)."];
+  Node7 -> Node8 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node8 [label="MainWindow::ChangeCamera\lProjection",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_main_window.html#a2dab4cfb073d2b8a4e08cf5ca399244c",tooltip=" "];
+  Node8 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node1 -> Node9 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node9 [label="MeshWidget::SetNearAndFar\lPlane",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_mesh_widget.html#a622efd906553896d76edb9161e095885",tooltip="Set the near and far clipping planes of the camera."];
+  Node9 -> Node10 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node10 [label="MeshWidget::initializeGL",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_mesh_widget.html#a7e1660885be499030bbf9bed27a33749",tooltip="Initialize OpenGL, shaders and a camera centered at origin."];
+  Node1 -> Node11 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node11 [label="MeshWidget::wheelEvent",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_mesh_widget.html#a4956bddec853058e4e2795d4e7a2954a",tooltip="Process the mouse wheel events."];
+}
