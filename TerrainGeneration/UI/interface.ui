@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1193</width>
+    <width>1192</width>
     <height>1000</height>
    </rect>
   </property>
@@ -346,6 +346,19 @@ p, li { white-space: pre-wrap; }
          <string>Start Erosion</string>
         </property>
        </widget>
+       <widget class="QPushButton" name="spawnTreeButton">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>120</y>
+          <width>75</width>
+          <height>23</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>SpawnTree</string>
+        </property>
+       </widget>
       </widget>
      </widget>
     </item>
@@ -356,7 +369,7 @@ p, li { white-space: pre-wrap; }
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1193</width>
+     <width>1192</width>
      <height>21</height>
     </rect>
    </property>
