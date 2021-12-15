@@ -179,9 +179,6 @@
     <None Include="Shaders\mesh.glsl" />
     <None Include="Shaders\skybox.glsl" />
   </ItemGroup>
-  <ItemGroup>
-    <Object Include="Assets\tree_obj.obj" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

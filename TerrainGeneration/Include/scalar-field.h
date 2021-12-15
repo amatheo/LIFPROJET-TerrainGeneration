@@ -30,6 +30,9 @@ public:
 	float getHeight(int index);
 	float getMaxHeight();
 	int getSize();
+	float getIntervalX();
+	float getIntervalY();
+
 	float slope(int i, int j);
 	Vector gradient(float posX, float posY);
 	int getIndex(int i, int j);

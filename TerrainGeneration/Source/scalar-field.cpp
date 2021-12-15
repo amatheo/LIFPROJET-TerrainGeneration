@@ -53,6 +53,14 @@ int ScalarField::getSize() {
 	return (ni * nj);
 }
 
+float ScalarField::getIntervalX(){
+	return this->intervalX;
+}
+
+float ScalarField::getIntervalY() {
+	return this->intervalY;
+}
+
 
 float ScalarField::getHeight(int i, int j) {
 	//gives height of the point in x y, stored in heightVector

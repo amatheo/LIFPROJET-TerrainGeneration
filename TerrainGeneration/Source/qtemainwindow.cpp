@@ -129,25 +129,48 @@ void MainWindow::UpdateTerrain()
 
 void MainWindow::SpawnTree()
 {
-	//remplir moi même
-	//créer un mesh
-	//charger fichier .obj pour l'arbre mesh load
-	//meshcolor pour créer l'objet, meshwidget->addMesh pour l'ajouter
-	QImage image = QImage();
+
+
+	//fix problem
+	int maxY = currentTerrain.nj;
+	int ratioX = currentTerrain.getIntervalX();
+	int ratioY = currentTerrain.getIntervalY();
+	int xpos = 0;
+	int ypos = 0;
+	int zpos;
+	
+	vector<int> treeList = currentTerrain.getTreeList();
+	
+	for (int i = 0; i<treeList.size();i++) {
+		
+		
+		
+		if (treeList[i] > 0){
+			zpos = currentTerrain.getHeight(i);
+			meshColor = MeshColor(Mesh(Box(0.5)));
+			Vector dir(xpos* ratioX, ypos*ratioY, zpos);
+			meshColor.Translate(dir);
+			meshWidget->AddMesh("tree"+i, meshColor);
+			
+		}
+
+
+
+		if (ypos == maxY) {
+			ypos = 0;
+			xpos++;
+		}
+		else {
+			ypos++;
+		}
+
+		
+
+	}
 
 	
-	objl::Loader loader;
-	loader.LoadFile("Assets\tree_obj.obj");
-
-	cout << loader.LoadedMeshes[0].MeshName << endl;
-
-	//fstream mytree ("./Objfiles/tree_obj.obj");
-	//mytree.open();
-
-	//meshColor = MeshColor(mytree.toMesh());
-	//meshWidget->AddMesh("mytree", meshColor);
-	//mytree.close();
 
 
+	
 	UpdateMaterial();
 }
