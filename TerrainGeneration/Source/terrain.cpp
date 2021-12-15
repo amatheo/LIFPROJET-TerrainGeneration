@@ -1,8 +1,9 @@
 #include "terrain.h"
 #include <QtGui/QImage>
 
-Terrain::Terrain(QImage image, Box box, int za, int zb):ScalarField(box, 50, 50)
+Terrain::Terrain(QImage image, Box box, float heightScale):ScalarField(box, 200, 200)
 {
+	this->heightScale = heightScale;
 }
 
 Terrain::Terrain() : ScalarField()
@@ -30,6 +31,7 @@ Mesh Terrain::toMesh()
 
 		for (int j = 0; j < this->nj; j++) {
 			Vector v = getPoint(i, j);
+			v[2] = v[2] * heightScale;
 			vertices.push_back(v);
 		}
 	}

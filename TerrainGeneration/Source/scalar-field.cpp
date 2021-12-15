@@ -24,7 +24,7 @@ ScalarField::ScalarField(Box data, int nbX, int nbY) {
 			this->vecField.v.push_back(Vector(this->intervalX * x + this->box[0][0], this->intervalY * y + this->box[0][1], 0));
 
 			//i add the length to the starting point from data[0], so it includeds every possibility and is clean
-			float r2 = static_cast <float> (rand()) / (static_cast <float> (RAND_MAX / 2.0f));
+			float r2 = static_cast <float> (rand()) / (static_cast <float> (RAND_MAX / 1.0f));
 			this->heightVector.push_back(r2);//here we fill it separately
 		}
 	}

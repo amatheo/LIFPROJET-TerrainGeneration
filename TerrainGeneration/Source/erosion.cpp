@@ -60,8 +60,8 @@ Terrain Erosion::ErodeTerrain(int numIteration, Terrain terrain, ErosionParamete
 	{
 		float posX = float_rand(0.0f, terrain.ni - 1);
 		float posY = float_rand(0.0f, terrain.nj - 1);
-		cout << "PosX: " << posX << endl;
-		cout << "PosY: " << posY << endl;
+		//cout << "PosX: " << posX << endl;
+		//cout << "PosY: " << posY << endl;
 		float dirX = 0;
 		float dirY = 0;
 
@@ -74,42 +74,42 @@ Terrain Erosion::ErodeTerrain(int numIteration, Terrain terrain, ErosionParamete
 			int nodeX = (int)posX;
 			int nodeY = (int)posY;
 
-			cout << "NodeX before moving: " << nodeX << endl;
-			cout << "NodeY before moving: " << nodeY << endl;
+			//cout << "NodeX before moving: " << nodeX << endl;
+			//cout << "NodeY before moving: " << nodeY << endl;
 
 			int dropletIndex = terrain.getIndex(nodeX, nodeY);
+			//cout << "Droplet Index: " << dropletIndex << endl;
 
 			// Calculate droplet's offset inside the cell (0,0) = at NW node, (1,1) = at SE node
 			float cellOffsetX = posX - nodeX;
 			float cellOffsetY = posY - nodeY;
 
+			
 			Vector gradient = terrain.gradient(posX, posY);
-			cout << "Gradient X : " << gradient[0] << " Gradient Y : " << gradient[1] << " Gradient Z : " << gradient[2] << endl;
+			//cout << "Gradient X : " << gradient[0] << " Gradient Y : " << gradient[1] << " Gradient Z : " << gradient[2] << endl;
 			float baseHeight = terrain.getHeight(nodeX, nodeY);
 
 			dirX = (dirX * parameter.inertia - gradient[0] * (1 - parameter.inertia));
 			dirY = (dirY * parameter.inertia - gradient[1] * (1 - parameter.inertia));
 
-			cout << "DirX: " << dirX << endl;
-			cout << "DirY: " << dirY << endl;
-
-			float len = sqrt(dirX * dirX + dirY * dirY);
-			if (len != 0) {
-				dirX /= len;
-				dirY /= len;
+			if ((dirX * dirX + dirY * dirY) >= 0) {
+				float len = sqrt(dirX * dirX + dirY * dirY);
+				if (len != 0) {
+					dirX /= len;
+					dirY /= len;
+				}
 			}
+		
 			posX += dirX;
 			posY += dirY;
 
 			// Stop simulating droplet if it's not moving or has flowed over edge of map
-			if ((dirX == 0 && dirY == 0) || posX < 0 || posX >= terrain.ni - 1 || posY < 0 || posY >= terrain.nj - 1) {
+			if ((dirX == 0 && dirY == 0) || posX < 1 || posX >= terrain.ni - 1 || posY < 1 || posY >= terrain.nj - 1) {
 				break;
 			}
 
 			nodeX = (int)posX;
 			nodeY = (int)posY;
-			cout << "NodeX after moving: " << nodeX << endl;
-			cout << "NodeY after moving: " << nodeY << endl;
 
 			float newHeight = terrain.getHeight(nodeX, nodeY);
 			float deltaHeight = newHeight - baseHeight;
@@ -152,7 +152,7 @@ Terrain Erosion::ErodeTerrain(int numIteration, Terrain terrain, ErosionParamete
 			}
 
 			// Update droplet's speed and water content
-			speed = sqrt(speed * speed + deltaHeight * 4); //For is used as an abstract multiplier, can make it a parameter
+			speed = sqrt(abs(speed * speed + deltaHeight * 4)); //Four is used as an abstract multiplier, can make it a parameter
 			water *= (1 - parameter.evaporateSpeed);
 		}
 	}

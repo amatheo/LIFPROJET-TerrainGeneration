@@ -10,11 +10,11 @@
 class Terrain : public ScalarField
 {
 public:
-	int za, zb;
+	float heightScale;
 	QImage heightmap;
 
 	Terrain();
-	Terrain(QImage image, Box box, int za, int zb);
+	Terrain(QImage image, Box box, float heightScale);
 	
 	Vector getPoint(int i, int j);
 	Vector getNormal(int i, int j);
