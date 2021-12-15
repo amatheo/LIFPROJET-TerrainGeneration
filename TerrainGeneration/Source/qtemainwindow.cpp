@@ -5,7 +5,7 @@
 #include <QtWidgets/qfiledialog.h>
 #include "terrain.h"
 #include <erosion.h>
-#include "OBJ_Loader.h"
+
 
 MainWindow::MainWindow()
 {
