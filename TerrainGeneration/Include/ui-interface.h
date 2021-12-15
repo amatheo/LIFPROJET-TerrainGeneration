@@ -60,6 +60,10 @@ public:
     QGroupBox *groupBox_5;
     QPushButton *erodeButton;
     QPushButton *spawnTreeButton;
+    QPushButton *upButton;
+    QPushButton *rightButton;
+    QPushButton *bottomButton;
+    QPushButton *leftButton;
     QMenuBar *menubar;
     QMenu *menuFile;
 
@@ -183,6 +187,18 @@ public:
         spawnTreeButton = new QPushButton(groupBox_5);
         spawnTreeButton->setObjectName(QString::fromUtf8("spawnTreeButton"));
         spawnTreeButton->setGeometry(QRect(10, 120, 75, 23));
+        upButton = new QPushButton(groupBox_5);
+        upButton->setObjectName(QString::fromUtf8("upButton"));
+        upButton->setGeometry(QRect(130, 20, 75, 23));
+        rightButton = new QPushButton(groupBox_5);
+        rightButton->setObjectName(QString::fromUtf8("rightButton"));
+        rightButton->setGeometry(QRect(170, 50, 75, 23));
+        bottomButton = new QPushButton(groupBox_5);
+        bottomButton->setObjectName(QString::fromUtf8("bottomButton"));
+        bottomButton->setGeometry(QRect(130, 80, 75, 23));
+        leftButton = new QPushButton(groupBox_5);
+        leftButton->setObjectName(QString::fromUtf8("leftButton"));
+        leftButton->setGeometry(QRect(90, 50, 75, 23));
 
         hboxLayout->addWidget(Parameters_groupBox);
 
@@ -256,6 +272,10 @@ public:
         groupBox_5->setTitle(QCoreApplication::translate("Assets", "Operation", nullptr));
         erodeButton->setText(QCoreApplication::translate("Assets", "Start Erosion", nullptr));
         spawnTreeButton->setText(QCoreApplication::translate("Assets", "SpawnTree", nullptr));
+        upButton->setText(QCoreApplication::translate("Assets", "Up", nullptr));
+        rightButton->setText(QCoreApplication::translate("Assets", "Right", nullptr));
+        bottomButton->setText(QCoreApplication::translate("Assets", "Bottom", nullptr));
+        leftButton->setText(QCoreApplication::translate("Assets", "Left", nullptr));
         menuFile->setTitle(QCoreApplication::translate("Assets", "File", nullptr));
     } // retranslateUi
 

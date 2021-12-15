@@ -34,6 +34,7 @@ public slots:
 	void StartErosion();
 	void UpdateTerrain();
 	void SpawnTree();
+	void MoveUp();
 };
 
 #endif
