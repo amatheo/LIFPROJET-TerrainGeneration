@@ -129,48 +129,36 @@ void MainWindow::UpdateTerrain()
 
 void MainWindow::SpawnTree()
 {
-
-
 	//fix problem
 	int maxY = currentTerrain.nj;
-	int ratioX = currentTerrain.getIntervalX();
-	int ratioY = currentTerrain.getIntervalY();
+	float ratioX = currentTerrain.getIntervalX();
+	float ratioY = currentTerrain.getIntervalY();
+	cout << ratioX << std::endl;
+	cout << ratioY << std::endl;
 	int xpos = 0;
 	int ypos = 0;
 	int zpos;
-	
 	vector<int> treeList = currentTerrain.getTreeList();
-	
-	for (int i = 0; i<treeList.size();i++) {
-		
-		
-		
-		if (treeList[i] > 0){
+	for (int i = 0; i < treeList.size(); i++) {
+		//cout << i << std::endl;
+		//cout << currentTerrain.getHeight(i) << std::endl;
+		if (treeList[i] > 0) {
 			zpos = currentTerrain.getHeight(i);
-			meshColor = MeshColor(Mesh(Box(0.5)));
-			Vector dir(xpos* ratioX, ypos*ratioY, zpos);
+
+			meshColor = MeshColor(Mesh(Box(0.1 * treeList[i])));
+			//Vector dir(xpos* ratioX, ypos*ratioY, zpos+1);
+			Vector dir(xpos * ratioX, ypos * ratioY, zpos + 1);
 			meshColor.Translate(dir);
-			meshWidget->AddMesh("tree"+i, meshColor);
-			
+			meshWidget->AddMesh("tree" + i, meshColor);
+
 		}
-
-
-
-		if (ypos == maxY) {
+		if (ypos == maxY - 1) {
 			ypos = 0;
 			xpos++;
 		}
 		else {
 			ypos++;
 		}
-
-		
-
 	}
-
-	
-
-
-	
 	UpdateMaterial();
 }
