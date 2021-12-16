@@ -41,7 +41,9 @@ void ScalarField::setHeight(int i, int j, float val) {
 
 void ScalarField::addHeight(int i, int j, float val) {
 	int index = getIndex(i, j);
-	this->heightVector[index] += val;
+	if (this->heightVector[index] + val < 1) {
+		this->heightVector[index] += val;
+	}
 }
 
 void ScalarField::addHeight(int index, float val)
@@ -86,9 +88,10 @@ float ScalarField::getMaxHeight() {
 
 Vector ScalarField::gradient(float posX, float posY)
 {
-	int coordX = (int)posX;
-	int coordY = (int)posY;
+	int coordX = round(posX);
+	int coordY = round(posY);
 
+	
 	// Calculate droplet's offset inside the cell (0,0) = at NW node, (1,1) = at SE node
 	float x = posX - coordX;
 	float y = posY - coordY;
@@ -98,6 +101,10 @@ Vector ScalarField::gradient(float posX, float posY)
 	int indexNE = getIndex(coordX+1, coordY);
 	int indexSW = getIndex(coordX, coordY+1);
 	int indexSE = getIndex(coordX+1, coordY+1);
+
+	if (indexNE < 0 || indexNW < 0 || indexSE < 0 || indexSW < 0) {
+		return Vector::Z;
+	}
 	
 	float heightNW = getHeight(indexNW);
 	float heightNE = getHeight(indexNE);

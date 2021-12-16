@@ -1,5 +1,6 @@
 #include "erosion.h"
 #include <math.h>
+#pragma float_control( except, on )
 using namespace std;
 Terrain Erosion::ErodeTerrain(int numIteration, Terrain terrain, ErosionParameter parameter)
 {
@@ -58,12 +59,10 @@ Terrain Erosion::ErodeTerrain(int numIteration, Terrain terrain, ErosionParamete
 	//////Apply Droplet
 	for (int iteration= 0; iteration < numIteration; iteration++)
 	{
-		float posX = float_rand(0.0f, terrain.ni - 1);
-		float posY = float_rand(0.0f, terrain.nj - 1);
-		//cout << "PosX: " << posX << endl;
-		//cout << "PosY: " << posY << endl;
-		float dirX = 0;
-		float dirY = 0;
+		float posX = float_rand(1.0f, terrain.ni - 2);
+		float posY = float_rand(1.0f, terrain.nj - 2);
+		float dirX = 0.01f;
+		float dirY = 0.01f;
 
 		float speed = parameter.initialSpeed;
 		float water = parameter.initialWaterVolume;
@@ -71,47 +70,49 @@ Terrain Erosion::ErodeTerrain(int numIteration, Terrain terrain, ErosionParamete
 
 
 		for (int lifetime = 0; lifetime < parameter.maxDropletLifetime; lifetime++) {
-			int nodeX = (int)posX;
-			int nodeY = (int)posY;
+			int nodeX = round(posX);
+			int nodeY = round(posY);
 
-			//cout << "NodeX before moving: " << nodeX << endl;
-			//cout << "NodeY before moving: " << nodeY << endl;
+			
 
 			int dropletIndex = terrain.getIndex(nodeX, nodeY);
-			//cout << "Droplet Index: " << dropletIndex << endl;
+			
 
 			// Calculate droplet's offset inside the cell (0,0) = at NW node, (1,1) = at SE node
 			float cellOffsetX = posX - nodeX;
 			float cellOffsetY = posY - nodeY;
-
 			
 			Vector gradient = terrain.gradient(posX, posY);
-			//cout << "Gradient X : " << gradient[0] << " Gradient Y : " << gradient[1] << " Gradient Z : " << gradient[2] << endl;
-			float baseHeight = terrain.getHeight(nodeX, nodeY);
 
-			dirX = (dirX * parameter.inertia - gradient[0] * (1 - parameter.inertia));
-			dirY = (dirY * parameter.inertia - gradient[1] * (1 - parameter.inertia));
+			float baseHeight = gradient[2];
+			float tmp = (1.0f - parameter.inertia);
 
-			if ((dirX * dirX + dirY * dirY) >= 0) {
+			dirX = (dirX * parameter.inertia - gradient[0] * tmp);
+			dirY = (dirY * parameter.inertia - gradient[1] * tmp);
+			
+
 				float len = sqrt(dirX * dirX + dirY * dirY);
 				if (len != 0) {
 					dirX /= len;
 					dirY /= len;
 				}
-			}
-		
+				
 			posX += dirX;
 			posY += dirY;
-
+			
 			// Stop simulating droplet if it's not moving or has flowed over edge of map
-			if ((dirX == 0 && dirY == 0) || posX < 1 || posX >= terrain.ni - 1 || posY < 1 || posY >= terrain.nj - 1) {
+			if ((dirX == 0 && dirY == 0) || posX < 1 || posX >= terrain.ni - 2 || posY < 1 || posY >= terrain.nj - 2) {
 				break;
 			}
 
-			nodeX = (int)posX;
-			nodeY = (int)posY;
+			nodeX = round(posX);
+			nodeY = round(posY);
 
-			float newHeight = terrain.getHeight(nodeX, nodeY);
+			
+
+			gradient = terrain.gradient(posX, posY);
+
+			float newHeight = gradient[2];
 			float deltaHeight = newHeight - baseHeight;
 
 			// Calculate the droplet's sediment capacity (higher when moving fast down a slope and contains lots of water)
@@ -156,7 +157,7 @@ Terrain Erosion::ErodeTerrain(int numIteration, Terrain terrain, ErosionParamete
 			water *= (1 - parameter.evaporateSpeed);
 		}
 	}
-	cout << "";
+	
 	return terrain;
 }
 
@@ -167,8 +168,6 @@ float Erosion::float_rand(float min, float max)
 	assert(max > min);
 	float random = ((float)rand()) / (float)RAND_MAX;
 
-	// generate (in your case) a float between 0 and (4.5-.78)
-	// then add .78, giving you a float between .78 and 4.5
 	float range = max - min;
 	return (random * range) + min;
 }
