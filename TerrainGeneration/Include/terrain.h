@@ -15,6 +15,7 @@ public:
 
 	Terrain();
 	Terrain(QImage image, Box box, float heightScale);
+	Terrain(Box box, float heightScale);
 	
 	Vector getPoint(int i, int j);
 	Vector getNormal(int i, int j);

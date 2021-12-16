@@ -4,7 +4,26 @@
 Terrain::Terrain(QImage image, Box box, float heightScale):ScalarField(box, 200, 200)
 {
 	this->heightScale = heightScale;
+
+	QSize scaleFactor(this->ni, this->nj);
+	image.scaled(scaleFactor, Qt::IgnoreAspectRatio, Qt::TransformationMode::SmoothTransformation);
+
+	for (int i = 0; i < ni; i++) {
+		for (int j = 0; j < nj; j++)
+		{
+			QRgb color = image.pixel(i, j);
+			float ratio = (float)qGray(color) / (float)255;
+			setHeight(i, j, ratio);
+		}
+	}
+
 }
+
+Terrain::Terrain(Box box, float heightScale):ScalarField(box, 200, 200)
+{
+	this->heightScale = heightScale;
+}
+
 
 Terrain::Terrain() : ScalarField()
 {

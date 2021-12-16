@@ -40,6 +40,7 @@ void MainWindow::CreateActions()
 	connect(uiw.terrainMeshButton, SIGNAL(clicked()), this, SLOT(GeneratePlaneMesh()));
 	connect(uiw.erodeButton, SIGNAL(clicked()), this, SLOT(StartErosion()));
 	connect(uiw.spawnTreeButton, SIGNAL(clicked()), this, SLOT(SpawnTree()));
+	connect(uiw.loadHeightmapButton, SIGNAL(clicked()), this, SLOT(ChangeHeightmapImage()));
 
 
 	// Widget edition
@@ -79,7 +80,8 @@ void MainWindow::UpdateMaterial()
 
 void MainWindow::ResetCamera()
 {
-	meshWidget->SetCamera(Camera(Vector(-10.0), Vector(0.0)));
+	Vector v = currentTerrain.getBox().Center();
+	meshWidget->SetCamera(Camera(Vector(0,0,5), v));
 }
 
 void MainWindow::ChangeCameraProjection() {
@@ -89,10 +91,14 @@ void MainWindow::ChangeCameraProjection() {
 
 void MainWindow::GeneratePlaneMesh() {
 
-	QImage image = QImage();
-
 	Box b = Box(Vector(0, 0, 0), Vector(10, 10, 0));
-	currentTerrain = Terrain(image, b, 2);
+	if (!(imagePath.isEmpty() || imagePath == NULL)) {
+		QImage image = QImage(imagePath);
+		currentTerrain = Terrain(image, b, 2);
+	}
+	else {
+		currentTerrain = Terrain(b, 2);
+	}
 
 	meshColor = MeshColor(currentTerrain.toMesh());
 
@@ -103,12 +109,13 @@ void MainWindow::GeneratePlaneMesh() {
 	uiw.lineEdit_2->setText(QString::number(meshColor.Triangles()));
 
 	UpdateMaterial();
+	ResetCamera();
 }
 
 void MainWindow::StartErosion()
 {
 	ErosionParameter param = ErosionParameter();
-	currentTerrain = Erosion::ErodeTerrain(1000, currentTerrain, param);
+	currentTerrain = Erosion::ErodeTerrain(uiw.iterationBox->value(), currentTerrain, param);
 	meshColor = MeshColor(currentTerrain.toMesh());
 	meshWidget->ClearAll();
 	meshWidget->AddMesh("TerrainMesh", meshColor);
@@ -125,6 +132,17 @@ void MainWindow::UpdateTerrain()
 	meshColor = MeshColor(currentTerrain.toMesh());
 	meshWidget->AddMesh("TerrainMesh", meshColor);
 	UpdateMaterial();
+}
+
+void MainWindow::ChangeHeightmapImage() {
+	imagePath = QFileDialog::getOpenFileName(this, tr("Open Image"), "/", tr("Image Files (*.png *.jpg)"));
+	if (!imagePath.isEmpty()) {
+		QPixmap preview(imagePath);
+		if (!preview.isNull()) {
+			uiw.selectedImage->clear();
+			uiw.selectedImage->setPixmap(preview);
+		}
+	}
 }
 
 void MainWindow::SpawnTree()
