@@ -1,6 +1,12 @@
 #include "terrain.h"
 #include <QtGui/QImage>
 
+/*!
+* \brief constructor
+* \param image of type QImage this is the image used as a base layer, it can be a heightmap
+* \param box of type Box
+* \param heightScale of type float
+*/
 Terrain::Terrain(QImage image, Box box, float heightScale):ScalarField(box, 200, 200)
 {
 	this->heightScale = heightScale;
@@ -19,16 +25,29 @@ Terrain::Terrain(QImage image, Box box, float heightScale):ScalarField(box, 200,
 
 }
 
+/*!
+* \brief constructor
+* \param box of type Box
+* \param heightScale of type float
+*/
 Terrain::Terrain(Box box, float heightScale):ScalarField(box, 200, 200)
 {
 	this->heightScale = heightScale;
 }
 
-
+/*!
+* \brief constructor
+*/
 Terrain::Terrain() : ScalarField()
 {
 }
 
+/*!
+* \brief returns the Vector type object at the coordinates (i, j)
+* \param i integer
+* \param j integer
+* \returns Vector type object
+*/
 Vector Terrain::getPoint(int i, int j)
 {
 	Vector vec = Vector();
@@ -37,11 +56,21 @@ Vector Terrain::getPoint(int i, int j)
 	return vec;
 }
 
+/*!
+* \brief returns the normal Vector type object at the coordinates (i, j)
+* \param i integer
+* \param j integer
+* \returns Vector type object
+*/
 Vector Terrain::getNormal(int i, int j)
 {
 	return Vector::Z;
 }
 
+/*!
+* \brief transforms the Terrain type object into a Mesh type object
+* \returns Mesh type object
+*/
 Mesh Terrain::toMesh()
 {
 	QVector<Vector> vertices;
@@ -85,11 +114,17 @@ Mesh Terrain::toMesh()
 	return m;
 }
 
+/*!
+* \brief destructor
+*/
 Terrain::~Terrain()
 {
 }
 
-
+/*!
+* \brief returns the list of trees
+* \returns a list of int
+*/
 vector<int> Terrain::getTreeList() {
 	int size = getSize();
 	//vector<float> treeHeight; useless data, might be used one day, but for now heightVector is enough
@@ -152,6 +187,12 @@ vector<int> Terrain::getTreeList() {
 
 	return trueLevelTree;
 }
+
+/*!
+* \brief checks whether it is possible to place a tree
+* \param i integer
+* \returns boolean
+*/
 bool Terrain::checkTree(int i) {
 	int xPos = (i - (i % this->nj)) / this->nj;
 	int yPos = (i % this->nj);
