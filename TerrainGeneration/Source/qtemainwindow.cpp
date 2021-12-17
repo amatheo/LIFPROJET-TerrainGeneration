@@ -165,7 +165,8 @@ void MainWindow::SpawnTree()
 
 			meshColor = MeshColor(Mesh(Box(0.1 * treeList[i])));
 			//Vector dir(xpos* ratioX, ypos*ratioY, zpos+1);
-			Vector dir(xpos * ratioX, ypos * ratioY, zpos + 1);
+
+			Vector dir(xpos * ratioX, ypos * ratioY, zpos *1.01);
 			meshColor.Translate(dir);
 			meshWidget->AddMesh("tree" + i, meshColor);
 

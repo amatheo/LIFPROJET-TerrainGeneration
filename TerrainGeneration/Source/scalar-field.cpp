@@ -40,6 +40,10 @@ ScalarField::ScalarField(Box data, int nbX, int nbY) {
 		}
 	}
 }
+Box ScalarField::getBox()
+{
+	return this->box;
+}
 
 /*!
 * \brief Accessor
@@ -99,9 +103,11 @@ int ScalarField::getSize() {
 * \brief Accessor
 * \returns float intervalX
 */
+
 float ScalarField::getIntervalX(){
 	return this->intervalX;
 }
+
 
 /*!
 * \brief Accessor
@@ -110,6 +116,8 @@ float ScalarField::getIntervalX(){
 float ScalarField::getIntervalY() {
 	return this->intervalY;
 }
+
+
 
 /*!
 * \brief calculates the height at the position (i, j)
