@@ -4,6 +4,7 @@ var class_main_window =
     [ "~MainWindow", "class_main_window.html#ae98d00a93bc118200eeef9f9bba1dba7", null ],
     [ "BoxMeshExample", "class_main_window.html#afd2e7e0264b34ac569661c4c1413b80f", null ],
     [ "ChangeCameraProjection", "class_main_window.html#a2dab4cfb073d2b8a4e08cf5ca399244c", null ],
+    [ "ChangeHeightmapImage", "class_main_window.html#a4ee13218ae73d847575cf8a482c9b1d4", null ],
     [ "CreateActions", "class_main_window.html#ac196f381c4aad2f18848f1cf490eba35", null ],
     [ "editingSceneLeft", "class_main_window.html#a172ea18a2a05ead1d20084e6d64f903f", null ],
     [ "editingSceneRight", "class_main_window.html#ac4a608002238c73622c6bc43cad3a47f", null ],

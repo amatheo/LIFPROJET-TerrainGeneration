@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['terrain_0',['Terrain',['../class_terrain.html',1,'Terrain'],['../class_terrain.html#a7160a06ab07a86ed97d23374405e8ef6',1,'Terrain::Terrain()'],['../class_terrain.html#a2808d0c445927a4f8e1ba4eaa13e7afb',1,'Terrain::Terrain(QImage image, Box box, int za, int zb)']]],
+  ['terrain_0',['Terrain',['../class_terrain.html',1,'Terrain'],['../class_terrain.html#a7160a06ab07a86ed97d23374405e8ef6',1,'Terrain::Terrain()'],['../class_terrain.html#ac70bc74861a0804feaad57b8a85f47f2',1,'Terrain::Terrain(QImage image, Box box, float heightScale)'],['../class_terrain.html#a41cef5b4a4ad6b2f481589a60e85b65c',1,'Terrain::Terrain(Box box, float heightScale)']]],
   ['terrain_2ecpp_1',['terrain.cpp',['../terrain_8cpp.html',1,'']]],
   ['terrain_2eh_2',['terrain.h',['../terrain_8h.html',1,'']]],
   ['terrainmeshbutton_3',['terrainMeshButton',['../class_ui___assets.html#a25e3aa83e14024598a4c836dfd6d0efc',1,'Ui_Assets']]],

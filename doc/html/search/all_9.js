@@ -12,5 +12,6 @@ var searchData=
   ['intersect_9',['Intersect',['../class_triangle.html#a47796c7dc4a61edf84578cc0b4d7bf62',1,'Triangle']]],
   ['intervalx_10',['intervalX',['../class_scalar_field.html#a4451897e6a921ea6b00996fb5cd4f7b0',1,'ScalarField']]],
   ['intervaly_11',['intervalY',['../class_scalar_field.html#a7986daf29d6e621efe736ca61d16bec7',1,'ScalarField']]],
-  ['inverse_12',['Inverse',['../class_vector.html#a1a62ac859fd3f828e2912677e3d58ac3',1,'Vector']]]
+  ['inverse_12',['Inverse',['../class_vector.html#a1a62ac859fd3f828e2912677e3d58ac3',1,'Vector']]],
+  ['iterationbox_13',['iterationBox',['../class_ui___assets.html#a68a3e807f40d2cdb8446201302828bc6',1,'Ui_Assets']]]
 ];

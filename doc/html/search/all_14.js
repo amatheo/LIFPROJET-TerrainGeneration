@@ -13,7 +13,7 @@ var searchData=
   ['updateterrain_10',['UpdateTerrain',['../class_main_window.html#aaf3c26504b4693f207b73eda482ada34',1,'MainWindow']]],
   ['updownround_11',['UpDownRound',['../class_camera.html#a5ac5c8289024a99760fda8678060d7a8',1,'Camera']]],
   ['updownvertical_12',['UpDownVertical',['../class_camera.html#abba5d1268ed072d535aab9d75d91fc74',1,'Camera']]],
-  ['usewireframe_13',['useWireframe',['../class_mesh_widget_1_1_mesh_g_l.html#a450050eef4ac43770e7c2e9e5ad4f03e',1,'MeshWidget::MeshGL']]],
-  ['usewireframe_14',['UseWireframe',['../class_mesh_widget.html#ae472d5af7a26865901aa42ddfd283896',1,'MeshWidget']]],
+  ['usewireframe_13',['UseWireframe',['../class_mesh_widget.html#ae472d5af7a26865901aa42ddfd283896',1,'MeshWidget']]],
+  ['usewireframe_14',['useWireframe',['../class_mesh_widget_1_1_mesh_g_l.html#a450050eef4ac43770e7c2e9e5ad4f03e',1,'MeshWidget::MeshGL']]],
   ['usewireframeglobal_15',['UseWireframeGlobal',['../class_mesh_widget.html#a51cd81908cbc6e3b58b72236009ee563',1,'MeshWidget']]]
 ];

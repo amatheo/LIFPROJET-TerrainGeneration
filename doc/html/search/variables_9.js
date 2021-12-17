@@ -6,5 +6,6 @@ var searchData=
   ['initialspeed_3',['initialSpeed',['../class_erosion_parameter.html#aecccdb416833bcb620feb1f757269482',1,'ErosionParameter']]],
   ['initialwatervolume_4',['initialWaterVolume',['../class_erosion_parameter.html#a3d39615cedb1a9230c05f795c8da594e',1,'ErosionParameter']]],
   ['intervalx_5',['intervalX',['../class_scalar_field.html#a4451897e6a921ea6b00996fb5cd4f7b0',1,'ScalarField']]],
-  ['intervaly_6',['intervalY',['../class_scalar_field.html#a7986daf29d6e621efe736ca61d16bec7',1,'ScalarField']]]
+  ['intervaly_6',['intervalY',['../class_scalar_field.html#a7986daf29d6e621efe736ca61d16bec7',1,'ScalarField']]],
+  ['iterationbox_7',['iterationBox',['../class_ui___assets.html#a68a3e807f40d2cdb8446201302828bc6',1,'Ui_Assets']]]
 ];
