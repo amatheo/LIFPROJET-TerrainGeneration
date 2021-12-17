@@ -1,0 +1,22 @@
+digraph "MeshWidget::ComputeRay"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="MeshWidget::ComputeRay",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Computes a ray from a pixel."];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="Camera::PixelToRay",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_camera.html#a80e5e7f22b83f321b8f83b388aae1926",tooltip="Compute the equation of a ray given a pixel in the camera plane."];
+  Node2 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="Camera::At",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_camera.html#ac2acdbc16b08d9f52a9c585c3b248f95",tooltip="Returns the look-at point."];
+  Node2 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="Camera::Eye",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_camera.html#a2a75d041c832597daf3170481a11832f",tooltip="Returns the eye point."];
+  Node2 -> Node5 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="Camera::GetAngleOfViewV",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_camera.html#a10e3b183465dd2c7b3d2220684b67389",tooltip="Returns the vertical angle of view."];
+  Node5 -> Node6 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="Camera::GetAngleOfViewH",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_camera.html#a3fd16cdcc605617518f8dc50291ff0ab",tooltip="Returns the horizontal angle of view."];
+  Node2 -> Node7 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="Normalized",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$evector_8h.html#a69dac1e81907adf00b7ac711610542a6",tooltip="Return a normalized vector."];
+  Node2 -> Node8 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node8 [label="Camera::Up",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_camera.html#a6214c085bb48cc16890798b8bff06b85",tooltip="Returns the up point."];
+}

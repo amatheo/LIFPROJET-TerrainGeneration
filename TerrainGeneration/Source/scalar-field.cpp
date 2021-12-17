@@ -1,10 +1,21 @@
 #include "scalar-field.h"
 
-
+/*!
+* \brief constructor
+* \param data Box
+* \param nbX integer
+* \param nbY integer
+*/
 ScalarField::ScalarField()
 {
 }
 
+/*!
+* \brief constructor
+* \param data Box
+* \param nbX integer
+* \param nbY integer
+*/
 ScalarField::ScalarField(Box data, int nbX, int nbY) {
 	//constructor used by terrain cpp
 	//added a small text
@@ -34,11 +45,34 @@ Box ScalarField::getBox()
 	return this->box;
 }
 
+/*!
+* \brief Accessor
+* \returns Box
+*/
+Box ScalarField::getBox()
+{
+	return this->box;
+}
+
+/*!
+* \brief sets the value of the height at the position (i, j) with the value "val"
+* \param i integer
+* \param j integer
+* \param val float
+* \returns void
+*/
 void ScalarField::setHeight(int i, int j, float val) {
 	int index = getIndex(i, j);
 	this->heightVector[index] = val;
 }
 
+/*!
+* \brief adds the value of the height at the position (i, j) with the value "val"
+* \param i integer
+* \param j integer
+* \param val float
+* \returns void
+*/
 void ScalarField::addHeight(int i, int j, float val) {
 	int index = getIndex(i, j);
 	if (this->heightVector[index] + val < 1) {
@@ -46,34 +80,71 @@ void ScalarField::addHeight(int i, int j, float val) {
 	}
 }
 
+/*!
+* \brief adds the value of the height at the position "index" with the value "val"
+* \param index integer
+* \param val float
+* \returns void
+*/
 void ScalarField::addHeight(int index, float val)
 {
 	this->heightVector[index] += val;
 }
 
+/*!
+* \brief calculates the size
+* \returns int
+*/
 int ScalarField::getSize() {
 	return (ni * nj);
 }
+
+/*!
+* \brief Accessor
+* \returns float intervalX
+*/
 
 float ScalarField::getIntervalX(){
 	return this->intervalX;
 }
 
+
+/*!
+* \brief Accessor
+* \returns float intervalY
+*/
 float ScalarField::getIntervalY() {
 	return this->intervalY;
 }
 
 
+
+/*!
+* \brief calculates the height at the position (i, j)
+* \param i integer
+* \param j integer
+* \returns float the height
+*/
 float ScalarField::getHeight(int i, int j) {
 	//gives height of the point in x y, stored in heightVector
 	int index = getIndex(i, j);
 	return this->heightVector[index];
 }
 
+/*!
+* \brief calculates the height of the point in the position "index" of the array
+* \param index integer
+* \returns float the height
+*/
 float ScalarField::getHeight(int index) {
 	//gives height of the point in x y, stored in heightVector
 	return this->heightVector[index];
 }
+
+/*!
+* \brief calculates the maximum height
+* \returns float the height
+*/
 float ScalarField::getMaxHeight() {
 	float max = 0;
 	int size = this->ni * this->nj;
@@ -85,7 +156,12 @@ float ScalarField::getMaxHeight() {
 	return this->heightVector[max];
 }
 
-
+/*!
+* \brief calculates the gradient in the position (posX, posY)
+* \param posX float
+* \param posY float
+* \returns Vector type object
+*/
 Vector ScalarField::gradient(float posX, float posY)
 {
 	int coordX = round(posX);
@@ -119,17 +195,35 @@ Vector ScalarField::gradient(float posX, float posY)
 	return Vector(gradientX,gradientY, height);
 }
 
+/*!
+* \brief calculates the slope at (i, j)
+* \param i integer
+* \param j integer
+* \returns float
+*/
 float ScalarField::slope(int i, int j) {
 	//is ok, and very simple
 	Vector g = gradient(i, j);
 	return Norm(g);
 }
 
+/*!
+* \brief calculates the array index where the point (i, j) is stored
+* \param i integer
+* \param j integer
+* \returns integer
+*/
 int ScalarField::getIndex(int i, int j) {
 	//since vectorField and heightVector are one dimensionnal, we need to calculate where the data for the point in x y is stored
 	return (i * nj) + j;
 }
 
+/*!
+* \brief 
+* \param nj integer
+* \param index integer
+* \returns Vector type object
+*/
 Vector ScalarField::getCoord(int nj, int index)
 {
 	int x = index / nj;
@@ -137,6 +231,12 @@ Vector ScalarField::getCoord(int nj, int index)
 	return Vector(x,y,0);
 }
 
+/*!
+* \brief 
+* \param i integer
+* \param j integer
+* \returns Vector type object
+*/
 Vector ScalarField::get2dPoint(int i, int j)
 {
 	int pos = getIndex(i, j);

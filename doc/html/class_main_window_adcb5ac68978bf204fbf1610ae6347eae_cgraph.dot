@@ -1,0 +1,28 @@
+digraph "MainWindow::ResetCamera"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="MainWindow::ResetCamera",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="MeshWidget::SetCamera",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_mesh_widget.html#a069a5373e7200ca6aa0a036b0a5b2a37",tooltip="Set the camera for the widget."];
+  Node2 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="Camera::GetAngleOfViewV",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_camera.html#a10e3b183465dd2c7b3d2220684b67389",tooltip="Returns the vertical angle of view."];
+  Node3 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="Camera::GetAngleOfViewH",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_camera.html#a3fd16cdcc605617518f8dc50291ff0ab",tooltip="Returns the horizontal angle of view."];
+  Node2 -> Node5 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="Camera::GetFar",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_camera.html#a683bba08362123673b442516c5019b6d",tooltip="Get the far distance."];
+  Node2 -> Node6 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="Camera::GetNear",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_camera.html#a02dbeff88f9b733b2279fcac243c282c",tooltip="Get the near distance."];
+  Node2 -> Node7 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="glLoadIdentity",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$_g_l_8h.html#ae4d8176aa24fe6d7afcad24d7e582bc6",tooltip=" "];
+  Node2 -> Node8 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node8 [label="glMatrixMode",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$_g_l_8h.html#abf278d4f613bc04bc94f8acea8f56f15",tooltip=" "];
+  Node2 -> Node9 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node9 [label="glOrtho",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$_g_l_8h.html#a4594f62a506347e3601bb057da595997",tooltip=" "];
+  Node2 -> Node10 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node10 [label="Math::RadianToDegree",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_math.html#adb7bf9d2b1cccf1bd33f0d8f46f37f70",tooltip="Convert radian to degrees."];
+  Node2 -> Node11 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node11 [label="Camera::SetPlanes",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_camera.html#a30aca50ca06fba92311862c705c8ed54",tooltip="Set the near and far planes."];
+}

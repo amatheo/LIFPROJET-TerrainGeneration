@@ -1,0 +1,51 @@
+digraph "MainWindow::StartErosion"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="MainWindow::StartErosion",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="MeshWidget::AddMesh",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_mesh_widget.html#a25e2ac4f7c5150af5913c3494edbdbc6",tooltip="Add a new mesh in the scene."];
+  Node1 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="MeshWidget::ClearAll",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_mesh_widget.html#acb3d16bfcc6d4c8e0d888cec02bc9ba6",tooltip="Destroys all mesh objects in the scene."];
+  Node1 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="Erosion::ErodeTerrain",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_erosion.html#ae3bcb322d3217b7f4ae6443556f2ab6c",tooltip="this is the Erosion class definition, it basically applies the erosion parameters on the terrain"];
+  Node4 -> Node5 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="ScalarField::addHeight",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_scalar_field.html#a020b04292822a3d0f24f1cfb32d1018e",tooltip=" "];
+  Node5 -> Node6 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="ScalarField::getIndex",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_scalar_field.html#a3cf872fb00961a510376e953fe9e273a",tooltip=" "];
+  Node4 -> Node7 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="Erosion::float_rand",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_erosion.html#afc9e70b808ad8134ad571ee599d9764f",tooltip="assigns a random position to the droplet."];
+  Node4 -> Node8 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node8 [label="ScalarField::getHeight",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_scalar_field.html#a496c6dbf5b28cdfdfea2f341d52ad171",tooltip=" "];
+  Node8 -> Node6 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 -> Node6 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 -> Node9 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node9 [label="ScalarField::gradient",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_scalar_field.html#a914988961f121085b0f5b3b6011da5c1",tooltip=" "];
+  Node9 -> Node8 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node9 -> Node6 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node1 -> Node10 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node10 [label="Terrain::toMesh",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_terrain.html#ae2c8483d3142a7cad048760653bdb3f6",tooltip=" "];
+  Node10 -> Node6 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node10 -> Node11 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node11 [label="Terrain::getPoint",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_terrain.html#ae3342d7ca241f0476f23c0d836f99211",tooltip=" "];
+  Node11 -> Node12 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node12 [label="ScalarField::get2dPoint",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_scalar_field.html#a1105da27af301dfbb9d54ce9a3c650cb",tooltip=" "];
+  Node12 -> Node6 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node11 -> Node8 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node10 -> Node13 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node13 [label="Mesh::SmoothNormals",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_mesh.html#a45ebd6b75547376beda88a9044115c38",tooltip="Smooth the normals of the mesh."];
+  Node13 -> Node14 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node14 [label="Triangle::AreaNormal",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_triangle.html#a557f329864e28fa75964f2a6d308fb03",tooltip="Compute the normal vector of the triangle, and scale the normal using its area."];
+  Node13 -> Node15 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node15 [label="Normalize",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$evector_8cpp.html#a08e0df2df7e0b436e2793e4dc1204f2c",tooltip="Normalize a vector, computing the inverse of its norm and scaling the components."];
+  Node1 -> Node16 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node16 [label="Mesh::Triangles",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_mesh.html#ab7f3f94add95384d89653968688ebb2f",tooltip="Get the number of triangles."];
+  Node1 -> Node17 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node17 [label="MainWindow::UpdateMaterial",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_main_window.html#a4c2cc405cef743090b55975f37eeceae",tooltip=" "];
+  Node17 -> Node18 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node18 [label="MeshWidget::UseWireframe\lGlobal",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_mesh_widget.html#a51cd81908cbc6e3b58b72236009ee563",tooltip="Changes the wireframe render flag for all meshes."];
+  Node1 -> Node19 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node19 [label="Mesh::Vertexes",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_mesh.html#a95961b24205dcbee0a32c2e63626a043",tooltip="Get the number of vertices in the geometry."];
+}

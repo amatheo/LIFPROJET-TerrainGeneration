@@ -1,6 +1,8 @@
 #include "erosion-parameter.h"
 
-//Default constructor
+/*!
+* \brief constructor
+*/
 ErosionParameter::ErosionParameter()
 {
 	//Default Value
@@ -16,6 +18,9 @@ ErosionParameter::ErosionParameter()
 	this->initialWaterVolume = 1.0f;
 }
 
+/*!
+* \brief destructor
+*/
 ErosionParameter::~ErosionParameter()
 {
 }
