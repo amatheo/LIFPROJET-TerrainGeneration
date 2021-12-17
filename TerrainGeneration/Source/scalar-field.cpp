@@ -40,19 +40,17 @@ ScalarField::ScalarField(Box data, int nbX, int nbY) {
 		}
 	}
 }
+/*!
+* \brief Accessor
+* \returns Box
+*/
+
 Box ScalarField::getBox()
 {
 	return this->box;
 }
 
-/*!
-* \brief Accessor
-* \returns Box
-*/
-Box ScalarField::getBox()
-{
-	return this->box;
-}
+
 
 /*!
 * \brief sets the value of the height at the position (i, j) with the value "val"
