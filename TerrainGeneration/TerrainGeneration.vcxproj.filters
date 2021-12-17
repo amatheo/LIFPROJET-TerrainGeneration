@@ -47,12 +47,10 @@
     <ClCompile Include="Source\realtime-moc.cpp">
       <Filter>Interface</Filter>
     </ClCompile>
-
     <ClCompile Include="Source\erosion-parameter.cpp">
       <Filter>Source\Core</Filter>
     </ClCompile>
     <ClCompile Include="Source\erosion.cpp">
-
       <Filter>Source\Core</Filter>
     </ClCompile>
   </ItemGroup>

@@ -33,6 +33,7 @@ public slots:
 	void GeneratePlaneMesh();
 	void StartErosion();
 	void UpdateTerrain();
+	void ChangeHeightmapImage();
 	void SpawnTree();
 };
 

@@ -1,31 +1,34 @@
-//Terrain
 #include "terrain.h"
 #include <QtGui/QImage>
 
-/*!
-* \brief constructor
-* \param image here we can pass a heightmap to generate a terrain
-* \param box
-* \param za
-* \param zb
-*/
-Terrain::Terrain(QImage image, Box box, int za, int zb):ScalarField(box, 50, 50)
+Terrain::Terrain(QImage image, Box box, float heightScale):ScalarField(box, 200, 200)
 {
+	this->heightScale = heightScale;
+
+	QSize scaleFactor(this->ni, this->nj);
+	image.scaled(scaleFactor, Qt::IgnoreAspectRatio, Qt::TransformationMode::SmoothTransformation);
+
+	for (int i = 0; i < ni; i++) {
+		for (int j = 0; j < nj; j++)
+		{
+			QRgb color = image.pixel(i, j);
+			float ratio = (float)qGray(color) / (float)255;
+			setHeight(i, j, ratio);
+		}
+	}
+
 }
 
-/*!
-* \brief constructor
-*/
+Terrain::Terrain(Box box, float heightScale):ScalarField(box, 200, 200)
+{
+	this->heightScale = heightScale;
+}
+
+
 Terrain::Terrain() : ScalarField()
 {
 }
 
-/*!
-* \brief returns the Vector type object in the coordinates (i,j)
-* \param i 
-* \param j
-* \returns Vector object
-*/
 Vector Terrain::getPoint(int i, int j)
 {
 	Vector vec = Vector();
@@ -34,20 +37,11 @@ Vector Terrain::getPoint(int i, int j)
 	return vec;
 }
 
-/*!
-* \param i
-* \param j
-* \returns Vector object
-*/
 Vector Terrain::getNormal(int i, int j)
 {
 	return Vector::Z;
 }
 
-/*!
-* \brief transforms the current Terrain type object into a Mesh type object
-* \returns Mesh type object
-*/
 Mesh Terrain::toMesh()
 {
 	QVector<Vector> vertices;
@@ -56,6 +50,7 @@ Mesh Terrain::toMesh()
 
 		for (int j = 0; j < this->nj; j++) {
 			Vector v = getPoint(i, j);
+			v[2] = v[2] * heightScale;
 			vertices.push_back(v);
 		}
 	}
@@ -90,10 +85,113 @@ Mesh Terrain::toMesh()
 	return m;
 }
 
-/*!
-* \brief destructor
-*/
 Terrain::~Terrain()
 {
+}
+
+
+vector<int> Terrain::getTreeList() {
+	int size = getSize();
+	//vector<float> treeHeight; useless data, might be used one day, but for now heightVector is enough
+	vector<int> levelTree;
+	for (int i = 0; i < size; i++) {
+		
+	//if(i%nj==0)
+			if (checkTree(i)) {
+				levelTree.push_back(1);
+
+				//this is actually very dumb and will be changed very soon
+				//why changing only previous on left and above? because we start from top left, so everything is added from this point, we cant know yet if there is a tree at right and under
+			}
+			else {
+				//no tree
+				levelTree.push_back(0);
+			}
+		
+	}
+	//it should have the same size as heightVector for manipulation
+	vector<int> trueLevelTree;
+	for (int i = 0; i < levelTree.size(); i++) {
+		int xPos = (i - (i % this->nj)) / this->nj;
+		int yPos = (i % this->nj);
+		//the 4 points surrounding the original point
+		//copypasted from gradient, might need a func
+		int prevXId;
+		int prevYId;
+		int succXId;
+		int succYId;
+		// covering case of calculating at borders
+		if (xPos == 0) {
+			prevXId = getIndex(xPos, yPos);
+		}
+		else {
+			prevXId = getIndex(xPos - 1, yPos);
+		}
+		if (xPos == ni-1) {
+			succXId = getIndex(xPos, yPos);
+		}
+		else {
+			succXId = getIndex(xPos + 1, yPos);
+		}
+		if (yPos == 0) {
+			prevYId = getIndex(xPos, yPos);
+		}
+		else {
+			prevYId = getIndex(xPos, yPos - 1);
+		}
+		if (yPos == nj-1) {
+			succYId = getIndex(xPos, yPos);
+		}
+		else {
+			succYId = getIndex(xPos, yPos + 1);
+		}
+		//the more surrounded of trees it is, the taller it is
+		trueLevelTree.push_back(levelTree[prevXId] + levelTree[succXId] + levelTree[prevYId] + levelTree[succYId] + levelTree[i]);
+		//trueLevelTree.push_back(levelTree[i]);
+	}
+
+	return trueLevelTree;
+}
+bool Terrain::checkTree(int i) {
+	int xPos = (i - (i % this->nj)) / this->nj;
+	int yPos = (i % this->nj);
+	//the 4 points surrounding the original point
+	//copypasted from gradient, might need a func
+	int prevXId;
+	int prevYId;
+	int succXId;
+	int succYId;
+	// covering case of calculating at borders
+	if (xPos == 0) {
+		prevXId = getIndex(xPos, yPos);
+	}
+	else {
+		prevXId = getIndex(xPos - 1, yPos);
+	}
+	if (xPos == ni-1) {
+		succXId = getIndex(xPos, yPos);
+	}
+	else {
+		succXId = getIndex(xPos + 1, yPos);
+	}
+	if (yPos == 0) {
+		prevYId = getIndex(xPos, yPos);
+	}
+	else {
+		prevYId = getIndex(xPos, yPos - 1);
+	}
+	if (yPos == nj-1) {
+		succYId = getIndex(xPos, yPos);
+	}
+	else {
+		succYId = getIndex(xPos, yPos + 1);
+	}
+	//if height equal eveywhere then the area is flat and a tree can appear
+	if (getHeight(prevXId) == getHeight(succXId) == getHeight(prevYId) == getHeight(succYId) == getHeight(xPos, yPos)) {
+		return true;
+		// the position is good for a tree
+	}
+	return false;
+
 }
 

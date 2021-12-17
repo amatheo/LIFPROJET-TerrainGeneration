@@ -10,11 +10,12 @@
 class Terrain : public ScalarField
 {
 public:
-	int za, zb;
+	float heightScale;
 	QImage heightmap;
 
 	Terrain();
-	Terrain(QImage image, Box box, int za, int zb);
+	Terrain(QImage image, Box box, float heightScale);
+	Terrain(Box box, float heightScale);
 	
 	/*
 	*
@@ -24,5 +25,8 @@ public:
 
 	Mesh toMesh();
 	~Terrain();
+
+	vector<int> getTreeList();
+	bool checkTree(int i);
 };
 #endif
